@@ -1,0 +1,118 @@
+{
+  "id": "tower-defense",
+  "name": "Tower Defense Starter",
+  "description": "Assets for a tower defense game with towers, enemies, projectiles, and terrain",
+
+  "packs": [
+    {
+      "type": "sprites",
+      "source": "kenney",
+      "id": "tiny-dungeon",
+      "required": true,
+      "reason": "Enemies, terrain tiles, items"
+    },
+    {
+      "type": "sprites",
+      "source": "kenney",
+      "id": "tiny-battle",
+      "required": false,
+      "reason": "Additional unit variety"
+    },
+    {
+      "type": "sprites",
+      "source": "kenney",
+      "id": "particle-pack",
+      "required": false,
+      "reason": "Explosions, projectile trails, impact effects"
+    },
+    {
+      "type": "sprites",
+      "source": "kenney",
+      "id": "ui-pack",
+      "required": false,
+      "reason": "Build menu, upgrade buttons, resource displays"
+    },
+    {
+      "type": "sounds",
+      "source": "kenney",
+      "id": "impact-sounds",
+      "required": false,
+      "reason": "Tower shots, enemy hits, explosions"
+    }
+  ],
+
+  "suggestedSprites": {
+    "tower_arrow": {
+      "pack": "tiny-dungeon",
+      "sprite": "torch-floor",
+      "notes": "Use as base, or create custom tower sprite"
+    },
+    "tower_cannon": {
+      "pack": "tiny-dungeon",
+      "sprite": "barrel",
+      "notes": "Repurpose as cannon tower base"
+    },
+    "tower_magic": {
+      "pack": "tiny-dungeon",
+      "sprite": "staff",
+      "notes": "Magic/spell tower"
+    },
+    "enemy_basic": {
+      "pack": "tiny-dungeon",
+      "sprite": "goblin-idle"
+    },
+    "enemy_fast": {
+      "pack": "tiny-dungeon",
+      "sprite": "skeleton-idle"
+    },
+    "enemy_tank": {
+      "pack": "tiny-dungeon",
+      "sprite": "orc-idle"
+    },
+    "enemy_boss": {
+      "pack": "tiny-dungeon",
+      "sprite": "demon-idle"
+    },
+    "projectile_arrow": {
+      "pack": "particle-pack",
+      "sprite": "arrow",
+      "notes": "Or use a simple line"
+    },
+    "projectile_fireball": {
+      "pack": "particle-pack",
+      "sprite": "fire-small"
+    },
+    "path_tile": {
+      "pack": "tiny-dungeon",
+      "sprite": "floor-dirt"
+    },
+    "grass_tile": {
+      "pack": "tiny-dungeon",
+      "sprite": "floor-grass"
+    },
+    "coin": {
+      "pack": "tiny-dungeon",
+      "sprite": "coin"
+    }
+  },
+
+  "placeholderFallbacks": {
+    "tower_arrow": { "shape": "triangle", "color": [0.5, 0.4, 0.3], "size": 32 },
+    "tower_cannon": { "shape": "circle", "color": [0.3, 0.3, 0.35], "size": 32 },
+    "tower_magic": { "shape": "star", "color": [0.6, 0.3, 0.9], "size": 32 },
+    "enemy_basic": { "shape": "circle", "color": [0.8, 0.2, 0.2], "size": 24 },
+    "enemy_fast": { "shape": "diamond", "color": [0.9, 0.5, 0.1], "size": 20 },
+    "enemy_tank": { "shape": "hexagon", "color": [0.4, 0.2, 0.2], "size": 32 },
+    "enemy_boss": { "shape": "hexagon", "color": [0.5, 0.1, 0.1], "size": 48 },
+    "projectile_arrow": { "shape": "diamond", "color": [0.6, 0.5, 0.3], "size": 8 },
+    "projectile_fireball": { "shape": "circle", "color": [1.0, 0.4, 0.1], "size": 12 }
+  },
+
+  "gameplayNotes": [
+    "Towers typically have: range, damage, fire rate, cost, upgrade path",
+    "Enemies have: health, speed, reward (gold on kill), armor type",
+    "Path is usually pre-defined; towers placed on grass tiles",
+    "Wave system: increasing difficulty, enemy variety, boss waves",
+    "Economy: gold from kills, spend on towers and upgrades"
+  ]
+}
