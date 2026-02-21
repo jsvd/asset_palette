@@ -5,131 +5,217 @@
   "source": "kenney",
   "license": "CC0",
   "homepage": "https://kenney.nl/assets/tiny-dungeon",
-  "downloadUrl": "https://kenney.nl/content/3-assets/156-tiny-dungeon/tinydungeon.zip",
+  "downloadUrl": "https://kenney.nl/media/pages/assets/tiny-dungeon/b56d7a13e3-1674742415/kenney_tiny-dungeon.zip",
 
   "tileSize": 16,
-  "primarySheet": "Tilemap/tilemap.png",
+  "primarySheet": "Tilemap/tilemap_packed.png",
 
   "metadata": {
     "author": "Kenney",
-    "description": "Micro roguelike dungeon tileset with characters and items",
-    "totalAssets": 234
+    "description": "Micro roguelike dungeon tileset (16x16) with characters, items, and terrain",
+    "totalAssets": 132,
+    "gridSize": { "cols": 12, "rows": 11 }
   },
 
   "sprites": {
-    "hero-knight-idle": { "x": 128, "y": 68 },
-    "hero-knight-walk": {
-      "frames": [
-        { "x": 128, "y": 68 },
-        { "x": 144, "y": 68 }
-      ],
-      "fps": 6,
-      "loop": true
-    },
-    "hero-mage-idle": { "x": 128, "y": 84 },
-    "hero-elf-idle": { "x": 128, "y": 100 },
-    "hero-lizard-idle": { "x": 128, "y": 116 },
+    "floor-stone-1": { "x": 0, "y": 0 },
+    "floor-stone-2": { "x": 16, "y": 0 },
+    "floor-stone-3": { "x": 32, "y": 0 },
+    "floor-stone-4": { "x": 48, "y": 0 },
+    "floor-brick-1": { "x": 64, "y": 0 },
+    "floor-brick-2": { "x": 80, "y": 0 },
+    "wall-gray-top": { "x": 96, "y": 0 },
+    "wall-gray-mid": { "x": 112, "y": 0 },
+    "wall-gray-bottom": { "x": 128, "y": 0 },
+    "wall-brick-1": { "x": 144, "y": 0 },
+    "wall-brick-2": { "x": 160, "y": 0 },
+    "wall-brick-3": { "x": 176, "y": 0 },
 
-    "skeleton-idle": { "x": 368, "y": 68 },
-    "skeleton-walk": {
-      "frames": [
-        { "x": 368, "y": 68 },
-        { "x": 384, "y": 68 }
-      ],
-      "fps": 6,
-      "loop": true
-    },
-    "zombie-idle": { "x": 368, "y": 84 },
-    "goblin-idle": { "x": 368, "y": 100 },
-    "orc-idle": { "x": 368, "y": 116 },
-    "demon-idle": { "x": 368, "y": 132 },
-    "slime-idle": { "x": 432, "y": 68 },
+    "floor-stone-5": { "x": 0, "y": 16 },
+    "floor-stone-6": { "x": 16, "y": 16 },
+    "floor-brown-1": { "x": 32, "y": 16 },
+    "floor-brown-2": { "x": 48, "y": 16 },
+    "floor-brown-3": { "x": 64, "y": 16 },
+    "floor-brown-4": { "x": 80, "y": 16 },
+    "wall-gray-window": { "x": 96, "y": 16 },
+    "wall-gray-torch": { "x": 112, "y": 16 },
+    "wall-gray-crack": { "x": 128, "y": 16 },
+    "wall-deco-1": { "x": 144, "y": 16 },
+    "wall-deco-2": { "x": 160, "y": 16 },
+    "wall-deco-3": { "x": 176, "y": 16 },
 
-    "coin": { "x": 288, "y": 272 },
-    "gem-blue": { "x": 304, "y": 272 },
-    "gem-green": { "x": 288, "y": 288 },
-    "gem-red": { "x": 304, "y": 288 },
-    "potion-red": { "x": 288, "y": 304 },
-    "potion-blue": { "x": 304, "y": 304 },
-    "potion-green": { "x": 288, "y": 320 },
-    "potion-yellow": { "x": 304, "y": 320 },
-    "key-gold": { "x": 288, "y": 336 },
-    "key-silver": { "x": 304, "y": 336 },
+    "wall-top-left": { "x": 0, "y": 32 },
+    "wall-top-mid": { "x": 16, "y": 32 },
+    "wall-top-right": { "x": 32, "y": 32 },
+    "floor-tile-1": { "x": 48, "y": 32 },
+    "floor-tile-2": { "x": 64, "y": 32 },
+    "door-wood-closed": { "x": 80, "y": 32 },
+    "door-wood-open": { "x": 96, "y": 32 },
+    "door-iron-closed": { "x": 112, "y": 32 },
+    "door-iron-open": { "x": 128, "y": 32 },
+    "arch-left": { "x": 144, "y": 32 },
+    "arch-mid": { "x": 160, "y": 32 },
+    "arch-right": { "x": 176, "y": 32 },
 
-    "sword": { "x": 288, "y": 128 },
-    "axe": { "x": 304, "y": 128 },
-    "hammer": { "x": 288, "y": 144 },
-    "spear": { "x": 304, "y": 144 },
-    "bow": { "x": 288, "y": 160 },
-    "staff": { "x": 304, "y": 160 },
-    "shield-wood": { "x": 288, "y": 176 },
-    "shield-metal": { "x": 304, "y": 176 },
+    "ui-cursor": { "x": 0, "y": 48 },
+    "ui-select": { "x": 16, "y": 48 },
+    "ui-x": { "x": 32, "y": 48 },
+    "shelf-1": { "x": 48, "y": 48 },
+    "shelf-2": { "x": 64, "y": 48 },
+    "barrel": { "x": 80, "y": 48 },
+    "crate": { "x": 96, "y": 48 },
+    "chest-closed": { "x": 112, "y": 48 },
+    "chest-open": { "x": 128, "y": 48 },
+    "furniture-1": { "x": 144, "y": 48 },
+    "furniture-2": { "x": 160, "y": 48 },
+    "furniture-3": { "x": 176, "y": 48 },
 
-    "chest-closed": { "x": 288, "y": 240 },
-    "chest-open": { "x": 304, "y": 240 },
-    "barrel": { "x": 288, "y": 256 },
-    "crate": { "x": 304, "y": 256 },
+    "heart-full": { "x": 0, "y": 64 },
+    "heart-half": { "x": 16, "y": 64 },
+    "heart-empty": { "x": 32, "y": 64 },
+    "sign-1": { "x": 48, "y": 64 },
+    "sign-2": { "x": 64, "y": 64 },
+    "platform-left": { "x": 80, "y": 64 },
+    "platform-mid": { "x": 96, "y": 64 },
+    "platform-right": { "x": 112, "y": 64 },
+    "shelf-books": { "x": 128, "y": 64 },
+    "shelf-potion": { "x": 144, "y": 64 },
+    "table-1": { "x": 160, "y": 64 },
+    "table-2": { "x": 176, "y": 64 },
 
-    "floor-stone": { "x": 0, "y": 0 },
-    "floor-brick": { "x": 16, "y": 0 },
-    "floor-dirt": { "x": 32, "y": 0 },
-    "floor-grass": { "x": 48, "y": 0 },
-    "wall-stone": { "x": 0, "y": 16 },
-    "wall-brick": { "x": 16, "y": 16 },
-    "wall-cave": { "x": 32, "y": 16 },
-    "door-closed": { "x": 0, "y": 48 },
-    "door-open": { "x": 16, "y": 48 },
-    "stairs-down": { "x": 32, "y": 48 },
-    "stairs-up": { "x": 48, "y": 48 },
+    "stairs-down": { "x": 0, "y": 80 },
+    "stairs-up": { "x": 16, "y": 80 },
+    "ladder": { "x": 32, "y": 80 },
+    "pot-1": { "x": 48, "y": 80 },
+    "pot-2": { "x": 64, "y": 80 },
+    "box-1": { "x": 80, "y": 80 },
+    "box-2": { "x": 96, "y": 80 },
+    "furniture-4": { "x": 112, "y": 80 },
+    "chair-1": { "x": 128, "y": 80 },
+    "chair-2": { "x": 144, "y": 80 },
+    "bed-1": { "x": 160, "y": 80 },
+    "bed-2": { "x": 176, "y": 80 },
 
-    "torch-wall": { "x": 64, "y": 48 },
-    "torch-floor": { "x": 80, "y": 48 },
-    "skull": { "x": 64, "y": 64 },
-    "bones": { "x": 80, "y": 64 },
-    "cobweb": { "x": 64, "y": 80 },
-    "crack": { "x": 80, "y": 80 },
+    "hero-wizard": { "x": 0, "y": 96 },
+    "hero-knight": { "x": 16, "y": 96 },
+    "hero-fighter": { "x": 32, "y": 96 },
+    "hero-rogue": { "x": 48, "y": 96 },
+    "ghost": { "x": 64, "y": 96 },
+    "skeleton-1": { "x": 80, "y": 96 },
+    "skeleton-2": { "x": 96, "y": 96 },
+    "mummy": { "x": 112, "y": 96 },
+    "hero-elf": { "x": 128, "y": 96 },
+    "hero-dwarf": { "x": 144, "y": 96 },
+    "hero-cleric": { "x": 160, "y": 96 },
+    "hero-ranger": { "x": 176, "y": 96 },
 
-    "heart-full": { "x": 288, "y": 352 },
-    "heart-half": { "x": 304, "y": 352 },
-    "heart-empty": { "x": 288, "y": 368 },
-    "mana-full": { "x": 304, "y": 368 }
+    "hero-barbarian": { "x": 0, "y": 112 },
+    "hero-monk": { "x": 16, "y": 112 },
+    "hero-paladin": { "x": 32, "y": 112 },
+    "hero-necro": { "x": 48, "y": 112 },
+    "npc-villager-1": { "x": 64, "y": 112 },
+    "npc-villager-2": { "x": 80, "y": 112 },
+    "npc-merchant": { "x": 96, "y": 112 },
+    "npc-guard": { "x": 112, "y": 112 },
+    "enemy-bat": { "x": 128, "y": 112 },
+    "enemy-slime": { "x": 144, "y": 112 },
+    "enemy-spider": { "x": 160, "y": 112 },
+    "enemy-orc": { "x": 176, "y": 112 },
+
+    "enemy-goblin": { "x": 0, "y": 128 },
+    "enemy-demon": { "x": 16, "y": 128 },
+    "enemy-boss": { "x": 32, "y": 128 },
+    "skull": { "x": 48, "y": 128 },
+    "bones": { "x": 64, "y": 128 },
+    "tombstone-1": { "x": 80, "y": 128 },
+    "tombstone-2": { "x": 96, "y": 128 },
+    "potion-red": { "x": 112, "y": 128 },
+    "potion-blue": { "x": 128, "y": 128 },
+    "potion-green": { "x": 144, "y": 128 },
+    "potion-yellow": { "x": 160, "y": 128 },
+    "potion-purple": { "x": 176, "y": 128 },
+
+    "coin-gold": { "x": 0, "y": 144 },
+    "coin-silver": { "x": 16, "y": 144 },
+    "gem-red": { "x": 32, "y": 144 },
+    "gem-blue": { "x": 48, "y": 144 },
+    "gem-green": { "x": 64, "y": 144 },
+    "key-gold": { "x": 80, "y": 144 },
+    "key-silver": { "x": 96, "y": 144 },
+    "ring": { "x": 112, "y": 144 },
+    "amulet": { "x": 128, "y": 144 },
+    "scroll": { "x": 144, "y": 144 },
+    "book": { "x": 160, "y": 144 },
+    "bag": { "x": 176, "y": 144 },
+
+    "sword": { "x": 0, "y": 160 },
+    "axe": { "x": 16, "y": 160 },
+    "spear": { "x": 32, "y": 160 },
+    "bow": { "x": 48, "y": 160 },
+    "staff-wood": { "x": 64, "y": 160 },
+    "staff-magic": { "x": 80, "y": 160 },
+    "shield-wood": { "x": 96, "y": 160 },
+    "shield-metal": { "x": 112, "y": 160 },
+    "torch-lit": { "x": 128, "y": 160 },
+    "torch-unlit": { "x": 144, "y": 160 },
+    "food-meat": { "x": 160, "y": 160 },
+    "food-bread": { "x": 176, "y": 160 }
   },
 
   "tags": {
     "player": [
-      "hero-knight-idle", "hero-knight-walk",
-      "hero-mage-idle", "hero-elf-idle", "hero-lizard-idle"
+      "hero-wizard", "hero-knight", "hero-fighter", "hero-rogue",
+      "hero-elf", "hero-dwarf", "hero-cleric", "hero-ranger",
+      "hero-barbarian", "hero-monk", "hero-paladin", "hero-necro"
     ],
     "enemy": [
-      "skeleton-idle", "skeleton-walk", "zombie-idle",
-      "goblin-idle", "orc-idle", "demon-idle", "slime-idle"
+      "skeleton-1", "skeleton-2", "mummy", "ghost",
+      "enemy-bat", "enemy-slime", "enemy-spider", "enemy-orc",
+      "enemy-goblin", "enemy-demon", "enemy-boss"
     ],
-    "item": [
-      "coin", "gem-blue", "gem-green", "gem-red",
-      "potion-red", "potion-blue", "potion-green", "potion-yellow",
-      "key-gold", "key-silver"
-    ],
-    "weapon": [
-      "sword", "axe", "hammer", "spear", "bow", "staff"
-    ],
-    "armor": [
-      "shield-wood", "shield-metal"
-    ],
-    "container": [
-      "chest-closed", "chest-open", "barrel", "crate"
+    "npc": [
+      "npc-villager-1", "npc-villager-2", "npc-merchant", "npc-guard"
     ],
     "terrain": [
-      "floor-stone", "floor-brick", "floor-dirt", "floor-grass",
-      "wall-stone", "wall-brick", "wall-cave"
+      "floor-stone-1", "floor-stone-2", "floor-stone-3", "floor-stone-4",
+      "floor-stone-5", "floor-stone-6", "floor-brick-1", "floor-brick-2",
+      "floor-brown-1", "floor-brown-2", "floor-brown-3", "floor-brown-4",
+      "floor-tile-1", "floor-tile-2"
+    ],
+    "wall": [
+      "wall-gray-top", "wall-gray-mid", "wall-gray-bottom",
+      "wall-brick-1", "wall-brick-2", "wall-brick-3",
+      "wall-gray-window", "wall-gray-torch", "wall-gray-crack",
+      "wall-deco-1", "wall-deco-2", "wall-deco-3",
+      "wall-top-left", "wall-top-mid", "wall-top-right"
     ],
     "door": [
-      "door-closed", "door-open", "stairs-down", "stairs-up"
+      "door-wood-closed", "door-wood-open",
+      "door-iron-closed", "door-iron-open",
+      "arch-left", "arch-mid", "arch-right"
+    ],
+    "stairs": ["stairs-down", "stairs-up", "ladder"],
+    "container": ["barrel", "crate", "chest-closed", "chest-open", "pot-1", "pot-2", "box-1", "box-2"],
+    "furniture": [
+      "shelf-1", "shelf-2", "shelf-books", "shelf-potion",
+      "furniture-1", "furniture-2", "furniture-3", "furniture-4",
+      "chair-1", "chair-2", "bed-1", "bed-2", "table-1", "table-2"
     ],
     "decoration": [
-      "torch-wall", "torch-floor", "skull", "bones", "cobweb", "crack"
+      "sign-1", "sign-2", "platform-left", "platform-mid", "platform-right",
+      "skull", "bones", "tombstone-1", "tombstone-2"
     ],
-    "ui": [
-      "heart-full", "heart-half", "heart-empty", "mana-full"
-    ]
+    "item": [
+      "coin-gold", "coin-silver", "gem-red", "gem-blue", "gem-green",
+      "key-gold", "key-silver", "ring", "amulet", "scroll", "book", "bag"
+    ],
+    "consumable": [
+      "potion-red", "potion-blue", "potion-green", "potion-yellow", "potion-purple",
+      "food-meat", "food-bread"
+    ],
+    "weapon": ["sword", "axe", "spear", "bow", "staff-wood", "staff-magic"],
+    "armor": ["shield-wood", "shield-metal"],
+    "light": ["torch-lit", "torch-unlit"],
+    "ui": ["ui-cursor", "ui-select", "ui-x", "heart-full", "heart-half", "heart-empty"]
   }
 }
