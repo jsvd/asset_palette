@@ -13,7 +13,7 @@
     {
       "id": "tiny-town",
       "name": "Tiny Town",
-      "status": "planned",
+      "status": "complete",
       "tags": ["town", "medieval", "rpg", "pixel-art", "16x16"]
     },
     {
@@ -37,25 +37,25 @@
     {
       "id": "roguelike-rpg-pack",
       "name": "Roguelike RPG Pack",
-      "status": "planned",
+      "status": "complete",
       "tags": ["roguelike", "rpg", "dungeon", "items", "characters"]
     },
     {
       "id": "platformer-pack-redux",
       "name": "Platformer Pack Redux",
-      "status": "planned",
+      "status": "complete",
       "tags": ["platformer", "character", "tiles", "enemies"]
     },
     {
       "id": "pixel-platformer",
       "name": "Pixel Platformer",
-      "status": "planned",
+      "status": "complete",
       "tags": ["platformer", "pixel-art", "retro"]
     },
     {
       "id": "space-shooter-redux",
       "name": "Space Shooter Redux",
-      "status": "planned",
+      "status": "complete",
       "tags": ["space", "shooter", "ships", "enemies"]
     },
     {
