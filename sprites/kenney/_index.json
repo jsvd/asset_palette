@@ -93,6 +93,12 @@
       "name": "Top-down Tanks Redux",
       "status": "complete",
       "tags": ["tanks", "top-down", "vehicles", "combat", "terrain"]
+    },
+    {
+      "id": "topdown-shooter",
+      "name": "Top-down Shooter",
+      "status": "complete",
+      "tags": ["shooter", "top-down", "characters", "zombies", "buildings", "64x64"]
     }
   ]
 }
