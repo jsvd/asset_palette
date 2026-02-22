@@ -1,0 +1,209 @@
+{
+  "id": "space-shooter",
+  "name": "Space Shooter Starter",
+  "description": "Assets for a classic space shooter (shmup) with player ships, enemies, projectiles, power-ups, meteors, and particle effects",
+
+  "packs": [
+    {
+      "type": "sprites",
+      "source": "kenney",
+      "id": "space-shooter-redux",
+      "required": true,
+      "reason": "Player ships, enemies, lasers, meteors, power-ups, and UI elements (variable sizes on 1024x1024 atlas)"
+    },
+    {
+      "type": "sprites",
+      "source": "kenney",
+      "id": "particle-pack",
+      "required": false,
+      "reason": "Explosion particles, muzzle flashes, smoke trails, and visual effects (512x512 individual PNGs)"
+    }
+  ],
+
+  "suggestedSprites": {
+    "player_ship": {
+      "pack": "space-shooter-redux",
+      "sprite": "ship1-blue",
+      "notes": "Main player ship (99x75px); variants: ship1-green/orange/red, ship2-*, ship3-*"
+    },
+    "player_ship_damaged": {
+      "pack": "space-shooter-redux",
+      "sprite": "ship1-blue-damage-3",
+      "notes": "Heavily damaged player ship; damage levels: damage-1 (light), damage-2 (medium), damage-3 (heavy)"
+    },
+    "enemy_small": {
+      "pack": "space-shooter-redux",
+      "sprite": "enemy-black-4",
+      "notes": "Small enemy ship (82x84px); smallest of the enemy set"
+    },
+    "enemy_medium": {
+      "pack": "space-shooter-redux",
+      "sprite": "enemy-red-1",
+      "notes": "Medium enemy ship (93x84px); variants in black/blue/green/red colors"
+    },
+    "enemy_large": {
+      "pack": "space-shooter-redux",
+      "sprite": "enemy-blue-2",
+      "notes": "Large enemy ship (104x84px); most imposing standard enemy"
+    },
+    "enemy_boss": {
+      "pack": "space-shooter-redux",
+      "sprite": "ufo-red",
+      "notes": "UFO boss ship (91x91px); variants: ufo-blue/green/yellow"
+    },
+    "bullet_player": {
+      "pack": "space-shooter-redux",
+      "sprite": "laser-blue-01",
+      "notes": "Player laser bolt (9x54px); many variants available for different weapon types"
+    },
+    "bullet_enemy": {
+      "pack": "space-shooter-redux",
+      "sprite": "laser-red-01",
+      "notes": "Enemy laser bolt (9x54px); red for visual distinction from player"
+    },
+    "missile": {
+      "pack": "space-shooter-redux",
+      "sprite": "laser-green-02",
+      "notes": "Missile/heavy projectile (13x57px); larger projectile for special weapons"
+    },
+    "laser": {
+      "pack": "space-shooter-redux",
+      "sprite": "beam-long-1",
+      "notes": "Continuous laser beam (15x67px); for charged/beam weapons"
+    },
+    "powerup_shield": {
+      "pack": "space-shooter-redux",
+      "sprite": "powerup-blue-shield",
+      "notes": "Shield power-up (34x33px); grants temporary invincibility"
+    },
+    "powerup_weapon": {
+      "pack": "space-shooter-redux",
+      "sprite": "powerup-green-bolt",
+      "notes": "Weapon upgrade power-up (34x33px); improves firepower"
+    },
+    "powerup_health": {
+      "pack": "space-shooter-redux",
+      "sprite": "pill-red",
+      "notes": "Health/repair power-up (22x21px); restores ship health"
+    },
+    "explosion_frame_1": {
+      "pack": "space-shooter-redux",
+      "sprite": "fire-00",
+      "notes": "Explosion frame 1 of sequence; use fire-00 through fire-19 for animation"
+    },
+    "explosion_frame_2": {
+      "pack": "space-shooter-redux",
+      "sprite": "fire-05",
+      "notes": "Explosion frame 2 of sequence"
+    },
+    "explosion_frame_3": {
+      "pack": "space-shooter-redux",
+      "sprite": "fire-10",
+      "notes": "Explosion frame 3 of sequence"
+    },
+    "explosion_frame_4": {
+      "pack": "space-shooter-redux",
+      "sprite": "fire-15",
+      "notes": "Explosion frame 4 of sequence"
+    },
+    "explosion_particle": {
+      "pack": "particle-pack",
+      "sprite": "fire-01",
+      "notes": "Large explosion particle (512x512px); scale down as needed"
+    },
+    "muzzle_flash": {
+      "pack": "particle-pack",
+      "sprite": "muzzle-01",
+      "notes": "Weapon muzzle flash (512x512px); use rotated variants for different angles"
+    },
+    "smoke_trail": {
+      "pack": "particle-pack",
+      "sprite": "smoke-01",
+      "notes": "Smoke particle for trails (512x512px); variants smoke-01 through smoke-10"
+    },
+    "asteroid": {
+      "pack": "space-shooter-redux",
+      "sprite": "meteor-brown-big-1",
+      "notes": "Large asteroid (101x84px); variants in brown/grey, sizes: big/med/small/tiny"
+    },
+    "meteor": {
+      "pack": "space-shooter-redux",
+      "sprite": "meteor-grey-big-2",
+      "notes": "Large meteor (120x98px); biggest meteor variant"
+    },
+    "background_star": {
+      "pack": "space-shooter-redux",
+      "sprite": "star-1",
+      "notes": "Background star decoration (25x24px); variants: star-1/2/3"
+    },
+    "background_planet": {
+      "pack": "particle-pack",
+      "sprite": "circle-01",
+      "notes": "Circular shape for planets (512x512px); tint/scale as needed for distant planets"
+    },
+    "shield_effect": {
+      "pack": "space-shooter-redux",
+      "sprite": "shield-effect-1",
+      "notes": "Shield bubble effect (133x108px); overlay on ship when shield active"
+    },
+    "engine_flame": {
+      "pack": "space-shooter-redux",
+      "sprite": "engine-4",
+      "notes": "Engine exhaust flame (49x45px); attach behind ship"
+    },
+    "spark": {
+      "pack": "particle-pack",
+      "sprite": "spark-01",
+      "notes": "Impact spark particle (512x512px); for bullet hits"
+    }
+  },
+
+  "placeholderFallbacks": {
+    "player_ship": { "shape": "triangle", "color": [0.2, 0.4, 0.9], "size": 48 },
+    "player_ship_damaged": { "shape": "triangle", "color": [0.6, 0.3, 0.3], "size": 48 },
+    "enemy_small": { "shape": "triangle", "color": [0.9, 0.2, 0.2], "size": 24 },
+    "enemy_medium": { "shape": "triangle", "color": [0.8, 0.2, 0.2], "size": 36 },
+    "enemy_large": { "shape": "triangle", "color": [0.7, 0.1, 0.1], "size": 48 },
+    "enemy_boss": { "shape": "circle", "color": [0.9, 0.1, 0.1], "size": 64 },
+    "bullet_player": { "shape": "circle", "color": [0.3, 0.6, 1.0], "size": 6 },
+    "bullet_enemy": { "shape": "circle", "color": [1.0, 0.3, 0.2], "size": 6 },
+    "missile": { "shape": "triangle", "color": [0.2, 0.8, 0.2], "size": 12 },
+    "laser": { "shape": "square", "color": [0.4, 0.9, 1.0], "size": 4 },
+    "powerup_shield": { "shape": "circle", "color": [0.3, 0.5, 1.0], "size": 20 },
+    "powerup_weapon": { "shape": "circle", "color": [0.2, 0.9, 0.3], "size": 20 },
+    "powerup_health": { "shape": "circle", "color": [1.0, 0.3, 0.3], "size": 16 },
+    "explosion_frame_1": { "shape": "circle", "color": [1.0, 0.8, 0.2], "size": 24 },
+    "explosion_frame_2": { "shape": "circle", "color": [1.0, 0.6, 0.1], "size": 32 },
+    "explosion_frame_3": { "shape": "circle", "color": [1.0, 0.4, 0.0], "size": 40 },
+    "explosion_frame_4": { "shape": "circle", "color": [0.8, 0.2, 0.0], "size": 48 },
+    "explosion_particle": { "shape": "circle", "color": [1.0, 0.5, 0.1], "size": 32 },
+    "muzzle_flash": { "shape": "circle", "color": [1.0, 1.0, 0.5], "size": 16 },
+    "smoke_trail": { "shape": "circle", "color": [0.5, 0.5, 0.5], "size": 24 },
+    "asteroid": { "shape": "circle", "color": [0.5, 0.4, 0.3], "size": 48 },
+    "meteor": { "shape": "circle", "color": [0.4, 0.4, 0.45], "size": 56 },
+    "background_star": { "shape": "circle", "color": [1.0, 1.0, 1.0], "size": 2 },
+    "background_planet": { "shape": "circle", "color": [0.3, 0.4, 0.6], "size": 64 },
+    "shield_effect": { "shape": "circle", "color": [0.3, 0.6, 1.0], "size": 64 },
+    "engine_flame": { "shape": "triangle", "color": [1.0, 0.6, 0.1], "size": 16 },
+    "spark": { "shape": "circle", "color": [1.0, 1.0, 0.8], "size": 8 }
+  },
+
+  "gameplayNotes": [
+    "Player ships come in 3 styles (ship1/2/3) with 4 colors each; ship1-blue has damage state sprites",
+    "Enemies are numbered 1-5 by size, with color variants (black/blue/green/red); UFOs serve as bosses",
+    "Lasers come in blue (player), red (enemy), and green (special); multiple shapes available",
+    "Meteors come in brown/grey colors and big/med/small/tiny sizes for variety",
+    "Fire sprites (fire-00 to fire-19) can be sequenced for explosion animations",
+    "Particle pack sprites are 512x512px - scale down significantly for in-game use",
+    "Power-ups use bolt (weapon), shield, and star icons with color variants",
+    "Engine and wing parts can be combined to create custom ship designs",
+    "Shield-effect sprites overlay on ship to show active shield state"
+  ],
+
+  "metadata": {
+    "genres": ["shmup", "shooter", "arcade"],
+    "perspective": "top-down",
+    "artStyle": ["vector", "clean", "modern"],
+    "features": ["scrolling", "waves", "power-ups", "particle-effects"]
+  }
+}
