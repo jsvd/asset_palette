@@ -19,25 +19,25 @@
     {
       "id": "cowboy-character",
       "name": "Cowboy Character",
-      "status": "planned",
+      "status": "complete",
       "tags": ["western", "cowboy", "gunslinger", "character", "pixel-art", "sidescroller"]
     },
     {
       "id": "desert-decorations",
       "name": "Desert Level Decorations",
-      "status": "planned",
+      "status": "complete",
       "tags": ["desert", "western", "cactus", "rocks", "environment", "pixel-art"]
     },
     {
       "id": "horses-arne16",
       "name": "Horses - Arne16",
-      "status": "planned",
+      "status": "complete",
       "tags": ["horses", "western", "animals", "pixel-art", "16x16"]
     },
     {
       "id": "frontier-wagons",
       "name": "Frontier Wagons",
-      "status": "planned",
+      "status": "complete",
       "tags": ["wagons", "western", "frontier", "vehicles", "pixel-art"]
     }
   ]

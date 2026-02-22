@@ -12,21 +12,23 @@
 
   "metadata": {
     "author": "zwonky (original: DualR)",
-    "description": "Horse sprites with 2-frame walk cycle. Uses Arne16 palette. Includes cacti and ground tiles.",
-    "notes": "Derived from 16x16 fantasy pixel art vehicles. 16x16 tile size confirmed."
+    "description": "Horse sprites with 2-frame walk cycle in 4 colors. Uses Arne16 palette.",
+    "notes": "Sheet is 32x64 pixels. 4 horse colors with 2 walk frames each."
   },
 
   "sprites": {
-    "horse-walk-1": { "x": 0, "y": 0 },
-    "horse-walk-2": { "x": 16, "y": 0 },
-    "cactus": { "x": 32, "y": 0 },
-    "ground-sand": { "x": 48, "y": 0 }
+    "horse-brown-walk-1": { "x": 0, "y": 0 },
+    "horse-brown-walk-2": { "x": 16, "y": 0 },
+    "horse-tan-walk-1": { "x": 0, "y": 16 },
+    "horse-tan-walk-2": { "x": 16, "y": 16 },
+    "horse-white-walk-1": { "x": 0, "y": 32 },
+    "horse-white-walk-2": { "x": 16, "y": 32 },
+    "horse-black-walk-1": { "x": 0, "y": 48 },
+    "horse-black-walk-2": { "x": 16, "y": 48 }
   },
 
   "tags": {
-    "animal": ["horse-walk-1", "horse-walk-2"],
-    "horse": ["horse-walk-1", "horse-walk-2"],
-    "vegetation": ["cactus"],
-    "terrain": ["ground-sand"]
+    "animal": ["horse-brown-walk-1", "horse-brown-walk-2", "horse-tan-walk-1", "horse-tan-walk-2", "horse-white-walk-1", "horse-white-walk-2", "horse-black-walk-1", "horse-black-walk-2"],
+    "horse": ["horse-brown-walk-1", "horse-brown-walk-2", "horse-tan-walk-1", "horse-tan-walk-2", "horse-white-walk-1", "horse-white-walk-2", "horse-black-walk-1", "horse-black-walk-2"]
   }
 }

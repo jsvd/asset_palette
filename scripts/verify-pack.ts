@@ -72,6 +72,22 @@ async function downloadPack(pack: SpritePack, cacheDir: string): Promise<string>
   }
 
   console.log(`  Downloading: ${pack.downloadUrl}`);
+
+  // Check if URL is a direct image file (not a zip)
+  const url = pack.downloadUrl.toLowerCase();
+  const isDirectImage = url.endsWith('.png') || url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.gif');
+
+  if (isDirectImage) {
+    // Direct image download - place directly in pack directory
+    fs.mkdirSync(packDir, { recursive: true });
+    const filename = pack.primarySheet || path.basename(new URL(pack.downloadUrl).pathname);
+    const imagePath = path.join(packDir, filename);
+    execSync(`curl -L -o "${imagePath}" "${pack.downloadUrl}"`, { stdio: "pipe" });
+    console.log(`  Downloaded to: ${packDir}`);
+    return packDir;
+  }
+
+  // Zip file download
   const zipPath = path.join(cacheDir, `${pack.id}.zip`);
 
   // Download with curl
