@@ -79,7 +79,7 @@
     {
       "id": "particle-pack",
       "name": "Particle Pack",
-      "status": "planned",
+      "status": "complete",
       "tags": ["particles", "vfx", "effects", "explosions"]
     },
     {
