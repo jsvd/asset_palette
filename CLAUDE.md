@@ -1,65 +1,84 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code when working with this repository.
 
 ## What This Is
 
-Asset Palette is a metadata-only catalog of CC0 game assets. It contains JSON definitions describing sprite sheets and sound packs — not the assets themselves. Definitions map semantic names to pixel coordinates in sprite sheets, making assets machine-readable for LLMs and game engines.
+Asset Palette is a visual sprite selector for CC0 game assets. It provides:
+- A catalog of known-working CC0 asset pack download URLs
+- A browser UI to visually browse and select sprites
+- On-demand downloading of packs when clicked
+- JSON output with sprite coordinates returned to the agent
 
 ## Commands
 
 ```bash
-npm install                                    # Install dependencies (tsx, sharp, ajv-cli)
-npm run verify sprites/kenney/pack-id.json     # Verify a single pack (downloads, checks bounds, generates preview)
-npm run verify:all                             # Verify all sprite packs
-npm run validate:schema                        # Validate JSON against schema (append -d <file>)
+npm start                    # Open the sprite selector UI (same as npm run catalog)
+npm run catalog              # Browse all packs
+npm run catalog <pack-id>    # Open a specific pack directly
 ```
 
-The verify script downloads packs to `.cache/`, validates sprite coordinates against actual image dimensions, and generates preview PNG grids alongside the definition file.
+## How It Works
 
-## Architecture
+1. **Agent invokes** `/sprite-catalog` or runs `npm run catalog`
+2. **Browser opens** showing all available packs from `catalog.json`
+3. **User clicks a pack** - downloads if not cached, then opens sprite view
+4. **User selects sprites** by clicking on the sheet (adjustable grid)
+5. **User clicks "Copy & Close"** - JSON is copied to clipboard and returned to agent
 
-**Data layer:** JSON files validated against JSON Schema definitions in `schema/`. Two schemas exist: `sprite-pack.schema.json` and `sound-pack.schema.json`.
+## Output Format
 
-**Organization by source:** Packs live under `sprites/<source>/` or `sounds/<source>/` where source is `kenney`, `opengameart`, `itch`, or `custom`. Each source directory has a `_index.json` catalog.
+When user makes a selection, this JSON is returned:
 
-**Starter kits** in `starters/` bundle multiple packs for specific game genres (e.g., tower-defense, gardening-sim) with suggested sprite mappings and placeholder fallbacks.
+```json
+{
+  "pack": "tiny-dungeon",
+  "packName": "Tiny Dungeon",
+  "source": "kenney",
+  "downloadUrl": "https://kenney.nl/...",
+  "tileSize": 16,
+  "selected": [
+    { "name": "hero-knight", "x": 16, "y": 96, "w": 16, "h": 16 }
+  ]
+}
+```
 
-**Tooling:** `scripts/verify-pack.ts` is the main verification tool (TypeScript, run via tsx). It uses Sharp for image processing.
+## Project Structure
 
-## Sprite Pack Definition Structure
+```
+asset_palette/
+├── catalog.json                 # Pack metadata (id, name, downloadUrl, tileSize, tags)
+├── .cache/                      # Downloaded packs (gitignored)
+├── sounds/                      # Sound pack definitions (separate from sprites)
+├── scripts/
+│   └── sprite-catalog-server.ts # The sprite selector tool
+├── .claude/
+│   └── commands/
+│       └── sprite-catalog.md    # Skill definition for /sprite-catalog
+└── package.json
+```
 
-Every sprite pack requires: `id`, `name`, `source`, `license` (must be "CC0"), `downloadUrl`, and `sprites`. Optional: `tileSize`, `primarySheet`, `tags`, `metadata`.
+## Adding New Packs
 
-Sprites are either static (`{ "x": 0, "y": 0 }`) or animated (`{ "frames": [...], "fps": 8, "loop": true }`). Coordinates are in pixels. Width/height default to `tileSize` if omitted.
+Edit `catalog.json` and add a new entry to the `packs` array:
 
-## How Agents Fetch and Use Sprites
+```json
+{
+  "id": "pack-id",
+  "name": "Pack Name",
+  "source": "kenney",
+  "downloadUrl": "https://...",
+  "tileSize": 16,
+  "tags": ["pixel-art", "characters"]
+}
+```
 
-**Discovery:** Read `sprites/<source>/_index.json` to browse available packs and their tags. Use `starters/*.json` to find curated bundles for a specific game genre — these include `suggestedSprites` that map gameplay roles (e.g., `enemy_basic`, `path_tile`) to specific pack/sprite pairs, plus `placeholderFallbacks` with shape/color definitions to use before assets are downloaded.
+The pack will automatically appear in the UI and download on first click.
 
-**Downloading:** Each pack definition has a `downloadUrl` (usually a .zip). Download and extract it. The `primarySheet` field gives the relative path to the main sprite sheet image inside the extracted archive.
+## For Agents
 
-**Resolving a sprite to pixels:** Given a sprite name, look it up in the pack's `sprites` object. For a static sprite, use `x`, `y` as the top-left corner and `w`, `h` (or `tileSize` if omitted) as dimensions. If the sprite has a `file` field, use that sheet instead of `primarySheet`.
-
-**Animations:** Animated sprites have a `frames` array of `{x, y}` positions instead of a single position. Use `fps` for playback speed and `loop` to determine if the animation repeats.
-
-**Finding sprites by category:** The `tags` object maps categories (e.g., `"enemy"`, `"terrain"`) to arrays of sprite names, allowing lookup by semantic role rather than browsing every sprite.
-
-## Conventions
-
-- **Pack IDs and sprite names:** kebab-case (`tiny-dungeon`, `hero-idle`, `coin-gold`)
-- **Sprite naming:** semantic prefixes — `hero-walk`, `enemy-slime`, `floor-stone`, `potion-health`
-- **Animation naming:** base name + state — `hero-idle`, `hero-walk`, `hero-attack`, `hero-die`
-- **Tags:** broad categories — `player`, `enemy`, `terrain`, `item`, `weapon`, `decoration`, `ui`
-- **Commit messages:** `Add PACK_NAME sprite definitions (N sprites validated)`
-- **Branch naming for PRs:** `add-<source>-<pack-id>`
-
-## Workflow for Adding a Pack
-
-1. Download and inspect the sprite sheet (note dimensions, grid size)
-2. Create `sprites/<source>/<pack-id>.json` with `$schema` reference
-3. Run `npm run verify sprites/<source>/<pack-id>.json` — fixes any out-of-bounds coordinates
-4. Check the generated preview PNG to visually confirm sprite extraction
-5. Update `sprites/<source>/_index.json` with the new pack entry
-
-See `AGENT_WORKFLOW.md` for detailed step-by-step instructions and `PACK_INVENTORY.md` for the master list of packs to document.
+When the user needs a sprite:
+1. Run `/sprite-catalog` to open the visual selector
+2. Wait for the user to browse and select sprites
+3. Receive the JSON with pack info and coordinates
+4. Use the coordinates to extract sprites from the downloaded pack in `.cache/<pack-id>/`
