@@ -73,7 +73,7 @@
     {
       "id": "ui-pack",
       "name": "UI Pack",
-      "status": "planned",
+      "status": "complete",
       "tags": ["ui", "buttons", "interface", "widgets"]
     },
     {
