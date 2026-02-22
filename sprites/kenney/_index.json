@@ -87,6 +87,12 @@
       "name": "1-Bit Pack",
       "status": "complete",
       "tags": ["1-bit", "monochrome", "tileset", "minimalist"]
+    },
+    {
+      "id": "topdown-tanks-redux",
+      "name": "Top-down Tanks Redux",
+      "status": "complete",
+      "tags": ["tanks", "top-down", "vehicles", "combat", "terrain"]
     }
   ]
 }
