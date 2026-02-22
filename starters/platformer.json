@@ -1,0 +1,475 @@
+{
+  "id": "platformer",
+  "name": "Platformer Starter",
+  "description": "Assets for a classic side-scrolling platformer with player movement, terrain tiles, enemies, collectibles, and hazards",
+
+  "packs": [
+    {
+      "type": "sprites",
+      "source": "kenney",
+      "id": "pixel-platformer",
+      "required": true,
+      "reason": "Retro pixel art style (18x18 tiles, 24x24 characters) with terrain, items, enemies, and backgrounds"
+    },
+    {
+      "type": "sprites",
+      "source": "kenney",
+      "id": "platformer-pack-redux",
+      "required": false,
+      "reason": "HD vector style (128x128 tiles) with 5 alien characters, 20+ enemies, 6 terrain types, and HUD elements"
+    }
+  ],
+
+  "suggestedSprites": {
+    "player_idle": {
+      "pack": "pixel-platformer",
+      "sprite": "char-green-idle",
+      "notes": "Static idle pose (24x24px); also: char-blue-idle, char-pink-idle, char-yellow-idle for color variants"
+    },
+    "player_walk": {
+      "pack": "pixel-platformer",
+      "sprite": "char-green-walk",
+      "notes": "Walk frame (24x24px); alternate with idle for simple walk animation"
+    },
+    "player_jump": {
+      "pack": "platformer-pack-redux",
+      "sprite": "alien-green-jump",
+      "notes": "Jump pose (128x256px HD); pixel-platformer lacks dedicated jump sprite - use idle"
+    },
+    "player_fall": {
+      "pack": "platformer-pack-redux",
+      "sprite": "alien-green-duck",
+      "notes": "Duck/fall pose (128x256px HD); use for falling or crouching"
+    },
+    "player_idle_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "alien-green-stand",
+      "notes": "HD idle (128x256px); also: alien-beige-stand, alien-blue-stand, alien-pink-stand, alien-yellow-stand"
+    },
+    "player_walk1_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "alien-green-walk1",
+      "notes": "HD walk frame 1 (128x256px)"
+    },
+    "player_walk2_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "alien-green-walk2",
+      "notes": "HD walk frame 2 (128x256px)"
+    },
+
+    "ground_left": {
+      "pack": "pixel-platformer",
+      "sprite": "ground-grass-left",
+      "notes": "Left edge of ground (18x18px); variants: ground-sand-left, ground-stone-left, ground-snow-left, ground-dirt-left"
+    },
+    "ground_mid": {
+      "pack": "pixel-platformer",
+      "sprite": "ground-grass-mid",
+      "notes": "Middle ground tile (18x18px); use for solid ground stretches"
+    },
+    "ground_right": {
+      "pack": "pixel-platformer",
+      "sprite": "ground-grass-right",
+      "notes": "Right edge of ground (18x18px)"
+    },
+    "ground_block": {
+      "pack": "pixel-platformer",
+      "sprite": "ground-grass-block",
+      "notes": "Single standalone ground block (18x18px)"
+    },
+    "ground_deep": {
+      "pack": "pixel-platformer",
+      "sprite": "ground-grass-deep-mid",
+      "notes": "Underground fill tile (18x18px); use below surface tiles"
+    },
+    "ground_mid_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "grass-mid",
+      "notes": "HD ground middle (128x128px); also: dirt-mid, sand-mid, snow-mid, stone-mid, planet-mid"
+    },
+    "ground_left_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "grass-left",
+      "notes": "HD ground left edge (128x128px)"
+    },
+    "ground_right_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "grass-right",
+      "notes": "HD ground right edge (128x128px)"
+    },
+
+    "platform_left": {
+      "pack": "pixel-platformer",
+      "sprite": "platform-grass-left",
+      "notes": "Floating platform left edge (18x18px); variants: platform-sand-left, platform-stone-left"
+    },
+    "platform_mid": {
+      "pack": "pixel-platformer",
+      "sprite": "platform-grass-mid",
+      "notes": "Floating platform middle (18x18px)"
+    },
+    "platform_right": {
+      "pack": "pixel-platformer",
+      "sprite": "platform-grass-right",
+      "notes": "Floating platform right edge (18x18px)"
+    },
+    "platform_single": {
+      "pack": "pixel-platformer",
+      "sprite": "platform-grass-single",
+      "notes": "Single-tile floating platform (18x18px)"
+    },
+    "platform_moving": {
+      "pack": "pixel-platformer",
+      "sprite": "moving-platform-mid",
+      "notes": "Moving platform (18x18px); combine with moving-platform-left/right for wider platforms"
+    },
+    "platform_half_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "grass-half",
+      "notes": "HD half-height platform (128x128px); good for thin platforms"
+    },
+
+    "enemy_slime": {
+      "pack": "pixel-platformer",
+      "sprite": "slime-1",
+      "notes": "Slime enemy frame 1 (18x18px); alternate with slime-2 for animation"
+    },
+    "enemy_slime_2": {
+      "pack": "pixel-platformer",
+      "sprite": "slime-2",
+      "notes": "Slime enemy frame 2 (18x18px)"
+    },
+    "enemy_bat": {
+      "pack": "pixel-platformer",
+      "sprite": "bat-1",
+      "notes": "Flying bat frame 1 (18x18px); alternate with bat-2 for wing flap"
+    },
+    "enemy_bat_2": {
+      "pack": "pixel-platformer",
+      "sprite": "bat-2",
+      "notes": "Flying bat frame 2 (18x18px)"
+    },
+    "enemy_spider": {
+      "pack": "pixel-platformer",
+      "sprite": "spider-1",
+      "notes": "Spider enemy frame 1 (18x18px); alternate with spider-2"
+    },
+    "enemy_bee_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "bee",
+      "notes": "HD bee enemy (128x128px); also: bee-move, bee-dead"
+    },
+    "enemy_slime_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "slime-green",
+      "notes": "HD slime (128x128px); also: slime-blue, slime-purple, slime-block"
+    },
+    "enemy_snail_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "snail",
+      "notes": "HD snail (128x128px); slow-moving ground enemy"
+    },
+    "enemy_fly_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "fly",
+      "notes": "HD fly enemy (128x128px); flying pest"
+    },
+    "enemy_frog_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "frog",
+      "notes": "HD frog (128x128px); jumping ground enemy"
+    },
+
+    "coin_gold": {
+      "pack": "pixel-platformer",
+      "sprite": "coin-gold",
+      "notes": "Gold coin (18x18px); also: coin-silver, coin-bronze"
+    },
+    "coin_spin": {
+      "pack": "pixel-platformer",
+      "sprite": "coin-spin-1",
+      "notes": "Spinning coin frame 1 (18x18px); use coin-spin-1/2/3 for animation"
+    },
+    "coin_gold_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "coin-gold",
+      "notes": "HD gold coin (128x128px)"
+    },
+    "gem_blue": {
+      "pack": "pixel-platformer",
+      "sprite": "gem-blue",
+      "notes": "Blue gem (18x18px); also: gem-red, gem-green, gem-yellow"
+    },
+    "gem_red": {
+      "pack": "pixel-platformer",
+      "sprite": "gem-red",
+      "notes": "Red gem - higher value (18x18px)"
+    },
+    "gem_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "gem-blue",
+      "notes": "HD gem (128x128px); also: gem-green, gem-red, gem-yellow"
+    },
+    "star": {
+      "pack": "platformer-pack-redux",
+      "sprite": "star",
+      "notes": "HD star collectible (128x128px)"
+    },
+
+    "hazard_spikes": {
+      "pack": "pixel-platformer",
+      "sprite": "spikes",
+      "notes": "Spike hazard (18x18px); instant damage on contact"
+    },
+    "hazard_spikes_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "spikes",
+      "notes": "HD spikes (128x128px)"
+    },
+    "hazard_saw": {
+      "pack": "pixel-platformer",
+      "sprite": "saw-full",
+      "notes": "Circular saw (18x18px); also: saw-half for smaller version"
+    },
+    "hazard_saw_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "saw",
+      "notes": "HD circular saw (128x128px); also: saw-half, saw-move for animation"
+    },
+    "hazard_lava": {
+      "pack": "pixel-platformer",
+      "sprite": "lava-top-1",
+      "notes": "Lava surface (18x18px); use lava-body below"
+    },
+    "hazard_lava_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "lava-top-high",
+      "notes": "HD lava surface (128x128px)"
+    },
+
+    "bg_sky": {
+      "pack": "pixel-platformer",
+      "sprite": "bg-sky-blue-1",
+      "notes": "Sky background tile (24x24px); variants: bg-sky-light-1/2/3/4, bg-sky-blue-1/2/3/4"
+    },
+    "bg_cloud": {
+      "pack": "pixel-platformer",
+      "sprite": "cloud-single",
+      "notes": "Single cloud (18x18px); also: cloud-left, cloud-mid, cloud-right for larger clouds"
+    },
+    "bg_cloud_large_left": {
+      "pack": "pixel-platformer",
+      "sprite": "bg-cloud-blue-left",
+      "notes": "Background cloud left (24x24px)"
+    },
+    "bg_cloud_large_right": {
+      "pack": "pixel-platformer",
+      "sprite": "bg-cloud-blue-right",
+      "notes": "Background cloud right (24x24px)"
+    },
+    "bg_hills": {
+      "pack": "pixel-platformer",
+      "sprite": "bg-hills-blue-1",
+      "notes": "Background hills (24x24px); variants 1-4 for variety"
+    },
+
+    "decoration_plant": {
+      "pack": "pixel-platformer",
+      "sprite": "plant-small",
+      "notes": "Small plant decoration (18x18px); also: plant-large"
+    },
+    "decoration_mushroom": {
+      "pack": "pixel-platformer",
+      "sprite": "mushroom-red",
+      "notes": "Decorative mushroom (18x18px); also: mushroom-brown"
+    },
+    "decoration_tree": {
+      "pack": "pixel-platformer",
+      "sprite": "tree-small",
+      "notes": "Background tree (18x18px); also: tree-large"
+    },
+    "decoration_bush_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "bush",
+      "notes": "HD bush decoration (128x128px)"
+    },
+    "decoration_fence_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "fence",
+      "notes": "HD fence (128x128px); also: fence-broken"
+    },
+
+    "block_question": {
+      "pack": "pixel-platformer",
+      "sprite": "block-question",
+      "notes": "Question block (18x18px); hit from below to get items"
+    },
+    "block_brick": {
+      "pack": "pixel-platformer",
+      "sprite": "block-brick",
+      "notes": "Breakable brick (18x18px)"
+    },
+    "block_crate": {
+      "pack": "pixel-platformer",
+      "sprite": "block-crate",
+      "notes": "Pushable crate (18x18px)"
+    },
+    "block_item_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "box-item",
+      "notes": "HD item box (128x128px); also: box-item-disabled after used"
+    },
+    "block_crate_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "box-crate",
+      "notes": "HD crate (128x128px)"
+    },
+
+    "door_closed": {
+      "pack": "pixel-platformer",
+      "sprite": "door-closed-top",
+      "notes": "Door top (18x18px); combine with door-closed-bottom for full door"
+    },
+    "door_open": {
+      "pack": "pixel-platformer",
+      "sprite": "door-open-top",
+      "notes": "Open door top (18x18px)"
+    },
+    "door_closed_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "door-closed-top",
+      "notes": "HD door top (128x128px); combine with door-closed-mid"
+    },
+
+    "flag_checkpoint": {
+      "pack": "pixel-platformer",
+      "sprite": "flag-green-top",
+      "notes": "Checkpoint flag top (18x18px); combine with flag-green-mid"
+    },
+    "flag_goal": {
+      "pack": "pixel-platformer",
+      "sprite": "flag-yellow-top",
+      "notes": "Goal/finish flag (18x18px)"
+    },
+    "flag_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "flag-green-1",
+      "notes": "HD flag (128x128px); variants: flag-blue, flag-red, flag-yellow"
+    },
+
+    "ladder_top": {
+      "pack": "pixel-platformer",
+      "sprite": "ladder-top",
+      "notes": "Ladder top segment (18x18px)"
+    },
+    "ladder_mid": {
+      "pack": "pixel-platformer",
+      "sprite": "ladder-mid",
+      "notes": "Ladder middle segment (18x18px); repeat for tall ladders"
+    },
+    "ladder_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "ladder-mid",
+      "notes": "HD ladder segment (128x128px)"
+    },
+
+    "spring": {
+      "pack": "pixel-platformer",
+      "sprite": "spring-compressed",
+      "notes": "Spring/bouncer compressed (18x18px); use spring-extended when triggered"
+    },
+    "spring_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "spring",
+      "notes": "HD spring (128x128px); sprung when extended"
+    },
+
+    "ui_heart_full": {
+      "pack": "pixel-platformer",
+      "sprite": "heart-full",
+      "notes": "Full heart for health display (18x18px)"
+    },
+    "ui_heart_half": {
+      "pack": "pixel-platformer",
+      "sprite": "heart-half",
+      "notes": "Half heart (18x18px)"
+    },
+    "ui_heart_empty": {
+      "pack": "pixel-platformer",
+      "sprite": "heart-empty",
+      "notes": "Empty heart (18x18px)"
+    },
+    "ui_heart_hd": {
+      "pack": "platformer-pack-redux",
+      "sprite": "hud-heart-full",
+      "notes": "HD full heart (128x128px); also: hud-heart-half, hud-heart-empty"
+    }
+  },
+
+  "placeholderFallbacks": {
+    "player_idle": { "shape": "square", "color": [0.2, 0.7, 0.3], "size": 24 },
+    "player_walk": { "shape": "square", "color": [0.2, 0.7, 0.3], "size": 24 },
+    "player_jump": { "shape": "square", "color": [0.3, 0.8, 0.4], "size": 24 },
+    "player_fall": { "shape": "square", "color": [0.2, 0.6, 0.3], "size": 24 },
+    "ground_left": { "shape": "square", "color": [0.4, 0.6, 0.2], "size": 18 },
+    "ground_mid": { "shape": "square", "color": [0.4, 0.6, 0.2], "size": 18 },
+    "ground_right": { "shape": "square", "color": [0.4, 0.6, 0.2], "size": 18 },
+    "ground_block": { "shape": "square", "color": [0.4, 0.6, 0.2], "size": 18 },
+    "ground_deep": { "shape": "square", "color": [0.5, 0.35, 0.2], "size": 18 },
+    "platform_left": { "shape": "square", "color": [0.5, 0.5, 0.5], "size": 18 },
+    "platform_mid": { "shape": "square", "color": [0.5, 0.5, 0.5], "size": 18 },
+    "platform_right": { "shape": "square", "color": [0.5, 0.5, 0.5], "size": 18 },
+    "platform_single": { "shape": "square", "color": [0.5, 0.5, 0.5], "size": 18 },
+    "platform_moving": { "shape": "square", "color": [0.6, 0.6, 0.7], "size": 18 },
+    "enemy_slime": { "shape": "circle", "color": [0.2, 0.8, 0.2], "size": 16 },
+    "enemy_slime_2": { "shape": "circle", "color": [0.2, 0.8, 0.2], "size": 16 },
+    "enemy_bat": { "shape": "diamond", "color": [0.3, 0.2, 0.3], "size": 14 },
+    "enemy_bat_2": { "shape": "diamond", "color": [0.3, 0.2, 0.3], "size": 14 },
+    "enemy_spider": { "shape": "circle", "color": [0.2, 0.2, 0.2], "size": 14 },
+    "coin_gold": { "shape": "circle", "color": [1.0, 0.85, 0.0], "size": 12 },
+    "coin_spin": { "shape": "circle", "color": [1.0, 0.85, 0.0], "size": 12 },
+    "gem_blue": { "shape": "diamond", "color": [0.2, 0.4, 0.9], "size": 14 },
+    "gem_red": { "shape": "diamond", "color": [0.9, 0.2, 0.2], "size": 14 },
+    "hazard_spikes": { "shape": "triangle", "color": [0.6, 0.6, 0.6], "size": 18 },
+    "hazard_saw": { "shape": "circle", "color": [0.7, 0.7, 0.7], "size": 16 },
+    "hazard_lava": { "shape": "square", "color": [1.0, 0.3, 0.0], "size": 18 },
+    "bg_sky": { "shape": "square", "color": [0.5, 0.7, 1.0], "size": 24 },
+    "bg_cloud": { "shape": "circle", "color": [1.0, 1.0, 1.0], "size": 18 },
+    "bg_hills": { "shape": "square", "color": [0.3, 0.5, 0.3], "size": 24 },
+    "decoration_plant": { "shape": "triangle", "color": [0.2, 0.6, 0.2], "size": 12 },
+    "decoration_mushroom": { "shape": "circle", "color": [0.9, 0.2, 0.2], "size": 10 },
+    "block_question": { "shape": "square", "color": [0.9, 0.7, 0.2], "size": 18 },
+    "block_brick": { "shape": "square", "color": [0.7, 0.4, 0.2], "size": 18 },
+    "block_crate": { "shape": "square", "color": [0.6, 0.4, 0.2], "size": 18 },
+    "door_closed": { "shape": "square", "color": [0.5, 0.3, 0.1], "size": 18 },
+    "door_open": { "shape": "square", "color": [0.3, 0.2, 0.1], "size": 18 },
+    "flag_checkpoint": { "shape": "triangle", "color": [0.2, 0.8, 0.2], "size": 18 },
+    "flag_goal": { "shape": "triangle", "color": [1.0, 0.9, 0.0], "size": 18 },
+    "ladder_top": { "shape": "square", "color": [0.6, 0.4, 0.2], "size": 18 },
+    "ladder_mid": { "shape": "square", "color": [0.6, 0.4, 0.2], "size": 18 },
+    "spring": { "shape": "square", "color": [0.8, 0.2, 0.2], "size": 18 },
+    "ui_heart_full": { "shape": "circle", "color": [0.9, 0.1, 0.1], "size": 16 },
+    "ui_heart_half": { "shape": "circle", "color": [0.9, 0.4, 0.4], "size": 16 },
+    "ui_heart_empty": { "shape": "circle", "color": [0.4, 0.4, 0.4], "size": 16 }
+  },
+
+  "gameplayNotes": [
+    "pixel-platformer uses 18x18 tiles and 24x24 characters; platformer-pack-redux uses 128x128 tiles and 128x256 characters",
+    "For simple walk animation, alternate between idle and walk sprites",
+    "Use left/mid/right tile variants to build ground and platform edges properly",
+    "Deep tiles (e.g., ground-grass-deep-mid) go below surface tiles to fill underground areas",
+    "Enemies in pixel-platformer have 2-frame animations (e.g., slime-1, slime-2)",
+    "Coin spinning animation uses coin-spin-1, coin-spin-2, coin-spin-3",
+    "Doors and flags consist of top and bottom/mid segments that should be stacked vertically",
+    "HD pack aliens have full state sets: stand, walk1, walk2, jump, duck, hit, climb1, climb2, swim1, swim2",
+    "Springs switch between compressed and extended states when the player bounces",
+    "Use the HUD sprites from platformer-pack-redux for health, keys, and score display"
+  ],
+
+  "metadata": {
+    "genres": ["platformer", "action", "arcade"],
+    "perspective": "side-view",
+    "artStyle": ["pixel-art", "vector", "retro", "hd"],
+    "features": ["jumping", "collectibles", "enemies", "hazards", "platforms", "animated-characters", "parallax-backgrounds"]
+  }
+}
