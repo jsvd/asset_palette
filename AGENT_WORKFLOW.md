@@ -5,7 +5,7 @@ Step-by-step process for creating sprite atlas definitions.
 ## Prerequisites
 
 ```bash
-cd /Users/arkham/project/asset_palace
+cd /Users/arkham/project/asset_palette
 npm install
 ```
 

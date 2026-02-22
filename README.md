@@ -1,4 +1,4 @@
-# Asset Palace
+# Asset Palette
 
 **LLM-accessible catalog of CC0 game assets with machine-readable sprite/sound definitions.**
 
@@ -11,13 +11,13 @@ When an LLM helps you build a game, it can find assets easily. But using them re
 2. Understanding which sprites are animations vs static
 3. Mapping semantic names ("player-walk") to UV coordinates
 
-Asset Palace solves this by providing JSON definitions with all that metadata pre-documented.
+Asset Palette solves this by providing JSON definitions with all that metadata pre-documented.
 
 ## Quick Start
 
 ```typescript
-// Example: Using asset_palace definitions with any game engine
-import tinyDungeon from "asset_palace/sprites/kenney/tiny-dungeon.json";
+// Example: Using asset_palette definitions with any game engine
+import tinyDungeon from "asset_palette/sprites/kenney/tiny-dungeon.json";
 
 // The definition tells you exactly where each sprite is
 const hero = tinyDungeon.sprites["hero-idle"];
@@ -30,7 +30,7 @@ const heroWalk = tinyDungeon.sprites["hero-walk"];
 ## Directory Structure
 
 ```
-asset_palace/
+asset_palette/
 ├── schema/
 │   ├── sprite-pack.schema.json   # JSON Schema for sprite definitions
 │   └── sound-pack.schema.json    # JSON Schema for sound definitions

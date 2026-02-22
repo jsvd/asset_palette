@@ -1,4 +1,4 @@
-# Contributing to Asset Palace
+# Contributing to Asset Palette
 
 Thank you for helping build a comprehensive catalog of CC0 game assets!
 

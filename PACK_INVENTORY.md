@@ -1,4 +1,4 @@
-# Asset Palace Pack Inventory
+# Asset Palette Pack Inventory
 
 Master list of CC0 game assets to document with sprite atlas definitions.
 
@@ -229,7 +229,7 @@ All Kenney assets are CC0, consistent art style, well-organized.
 
 ## Kenney 3D Packs (Reference only - 2D focus)
 
-Low priority for asset_palace since we focus on 2D sprite definitions.
+Low priority for asset_palette since we focus on 2D sprite definitions.
 But the following have useful 2D renders/icons:
 - Nature Kit (330 assets) - tree/plant renders useful as sprites
 - Food Kit - item icons
