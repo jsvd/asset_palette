@@ -1,0 +1,32 @@
+{
+  "$schema": "../../schema/sprite-pack.schema.json",
+  "id": "horses-arne16",
+  "name": "Horses - Arne16",
+  "source": "opengameart",
+  "license": "CC0",
+  "homepage": "https://opengameart.org/content/horses-arne16",
+  "downloadUrl": "https://opengameart.org/sites/default/files/horse_4.png",
+
+  "tileSize": 16,
+  "primarySheet": "horse_4.png",
+
+  "metadata": {
+    "author": "zwonky (original: DualR)",
+    "description": "Horse sprites with 2-frame walk cycle. Uses Arne16 palette. Includes cacti and ground tiles.",
+    "notes": "Derived from 16x16 fantasy pixel art vehicles. 16x16 tile size confirmed."
+  },
+
+  "sprites": {
+    "horse-walk-1": { "x": 0, "y": 0 },
+    "horse-walk-2": { "x": 16, "y": 0 },
+    "cactus": { "x": 32, "y": 0 },
+    "ground-sand": { "x": 48, "y": 0 }
+  },
+
+  "tags": {
+    "animal": ["horse-walk-1", "horse-walk-2"],
+    "horse": ["horse-walk-1", "horse-walk-2"],
+    "vegetation": ["cactus"],
+    "terrain": ["ground-sand"]
+  }
+}

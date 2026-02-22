@@ -1,0 +1,33 @@
+{
+  "$schema": "../../schema/sprite-pack.schema.json",
+  "id": "frontier-wagons",
+  "name": "Frontier Wagons",
+  "source": "opengameart",
+  "license": "CC0",
+  "homepage": "https://opengameart.org/content/frontier-wagons",
+  "downloadUrl": "https://opengameart.org/sites/default/files/frontier_wagons.png",
+
+  "primarySheet": "frontier_wagons.png",
+
+  "metadata": {
+    "author": "Unknown (OpenGameArt contributor)",
+    "description": "Frontier-type wagons inspired by North American pioneers. Uses Arne16 palette. Includes horse and driver sprites.",
+    "notes": "Sprite size is 32x48. Exact sprite positions need verification after download."
+  },
+
+  "sprites": {
+    "wagon-covered": { "x": 0, "y": 0, "w": 32, "h": 48 },
+    "wagon-open": { "x": 32, "y": 0, "w": 32, "h": 48 },
+    "wagon-supply": { "x": 64, "y": 0, "w": 32, "h": 48 },
+    "horse-wagon": { "x": 96, "y": 0, "w": 32, "h": 48 },
+    "driver": { "x": 128, "y": 0, "w": 32, "h": 48 }
+  },
+
+  "tags": {
+    "vehicle": ["wagon-covered", "wagon-open", "wagon-supply"],
+    "wagon": ["wagon-covered", "wagon-open", "wagon-supply"],
+    "animal": ["horse-wagon"],
+    "character": ["driver"],
+    "decoration": ["wagon-covered", "wagon-open", "wagon-supply", "horse-wagon"]
+  }
+}

@@ -1,0 +1,160 @@
+{
+  "$schema": "../../schema/sprite-pack.schema.json",
+  "id": "pixel-art-boy",
+  "name": "Pixel Art Boy Character",
+  "source": "opengameart",
+  "license": "CC0",
+  "homepage": "https://opengameart.org/content/pixel-art-character",
+  "downloadUrl": "https://opengameart.org/sites/default/files/Pixel%20Art%20Character-TheGameAssetsMine-.zip",
+
+  "tileSize": 64,
+  "primarySheet": "Pixel Art Character-TheGameAssetsMine-/PNG/Boy  sheet wlaking and Idle.png",
+
+  "metadata": {
+    "author": "TheGameAssetsMine",
+    "description": "Cute top-down boy character with 4-direction walk and idle animations (64x64px). Modern casual style with cap and t-shirt.",
+    "totalAssets": 32,
+    "gridSize": { "cols": 4, "rows": 8 },
+    "notes": "Sprite sheet has preview image on right side. Active sprites in left 256x512 region."
+  },
+
+  "sprites": {
+    "boy-walk-down-1": { "x": 0, "y": 0 },
+    "boy-walk-down-2": { "x": 64, "y": 0 },
+    "boy-walk-down-3": { "x": 128, "y": 0 },
+    "boy-walk-down-4": { "x": 192, "y": 0 },
+
+    "boy-walk-left-1": { "x": 0, "y": 64 },
+    "boy-walk-left-2": { "x": 64, "y": 64 },
+    "boy-walk-left-3": { "x": 128, "y": 64 },
+    "boy-walk-left-4": { "x": 192, "y": 64 },
+
+    "boy-walk-right-1": { "x": 0, "y": 128 },
+    "boy-walk-right-2": { "x": 64, "y": 128 },
+    "boy-walk-right-3": { "x": 128, "y": 128 },
+    "boy-walk-right-4": { "x": 192, "y": 128 },
+
+    "boy-walk-up-1": { "x": 0, "y": 192 },
+    "boy-walk-up-2": { "x": 64, "y": 192 },
+    "boy-walk-up-3": { "x": 128, "y": 192 },
+    "boy-walk-up-4": { "x": 192, "y": 192 },
+
+    "boy-idle-down-1": { "x": 0, "y": 320 },
+    "boy-idle-down-2": { "x": 64, "y": 320 },
+    "boy-idle-down-3": { "x": 128, "y": 320 },
+    "boy-idle-down-4": { "x": 192, "y": 320 },
+
+    "boy-idle-left-1": { "x": 0, "y": 384 },
+    "boy-idle-left-2": { "x": 64, "y": 384 },
+    "boy-idle-left-3": { "x": 128, "y": 384 },
+    "boy-idle-left-4": { "x": 192, "y": 384 },
+
+    "boy-idle-right-1": { "x": 0, "y": 448 },
+    "boy-idle-right-2": { "x": 64, "y": 448 },
+    "boy-idle-right-3": { "x": 128, "y": 448 },
+    "boy-idle-right-4": { "x": 192, "y": 448 },
+
+    "boy-idle-up-1": { "x": 0, "y": 512 },
+    "boy-idle-up-2": { "x": 64, "y": 512 },
+    "boy-idle-up-3": { "x": 128, "y": 512 },
+    "boy-idle-up-4": { "x": 192, "y": 512 },
+
+    "boy-walk-down": {
+      "frames": [
+        { "x": 0, "y": 0 },
+        { "x": 64, "y": 0 },
+        { "x": 128, "y": 0 },
+        { "x": 192, "y": 0 }
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "boy-walk-left": {
+      "frames": [
+        { "x": 0, "y": 64 },
+        { "x": 64, "y": 64 },
+        { "x": 128, "y": 64 },
+        { "x": 192, "y": 64 }
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "boy-walk-right": {
+      "frames": [
+        { "x": 0, "y": 128 },
+        { "x": 64, "y": 128 },
+        { "x": 128, "y": 128 },
+        { "x": 192, "y": 128 }
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "boy-walk-up": {
+      "frames": [
+        { "x": 0, "y": 192 },
+        { "x": 64, "y": 192 },
+        { "x": 128, "y": 192 },
+        { "x": 192, "y": 192 }
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "boy-idle-down": {
+      "frames": [
+        { "x": 0, "y": 320 },
+        { "x": 64, "y": 320 },
+        { "x": 128, "y": 320 },
+        { "x": 192, "y": 320 }
+      ],
+      "fps": 4,
+      "loop": true
+    },
+    "boy-idle-left": {
+      "frames": [
+        { "x": 0, "y": 384 },
+        { "x": 64, "y": 384 },
+        { "x": 128, "y": 384 },
+        { "x": 192, "y": 384 }
+      ],
+      "fps": 4,
+      "loop": true
+    },
+    "boy-idle-right": {
+      "frames": [
+        { "x": 0, "y": 448 },
+        { "x": 64, "y": 448 },
+        { "x": 128, "y": 448 },
+        { "x": 192, "y": 448 }
+      ],
+      "fps": 4,
+      "loop": true
+    },
+    "boy-idle-up": {
+      "frames": [
+        { "x": 0, "y": 512 },
+        { "x": 64, "y": 512 },
+        { "x": 128, "y": 512 },
+        { "x": 192, "y": 512 }
+      ],
+      "fps": 4,
+      "loop": true
+    }
+  },
+
+  "tags": {
+    "player": [
+      "boy-walk-down", "boy-walk-left", "boy-walk-right", "boy-walk-up",
+      "boy-idle-down", "boy-idle-left", "boy-idle-right", "boy-idle-up"
+    ],
+    "walk-down": ["boy-walk-down", "boy-walk-down-1", "boy-walk-down-2", "boy-walk-down-3", "boy-walk-down-4"],
+    "walk-left": ["boy-walk-left", "boy-walk-left-1", "boy-walk-left-2", "boy-walk-left-3", "boy-walk-left-4"],
+    "walk-right": ["boy-walk-right", "boy-walk-right-1", "boy-walk-right-2", "boy-walk-right-3", "boy-walk-right-4"],
+    "walk-up": ["boy-walk-up", "boy-walk-up-1", "boy-walk-up-2", "boy-walk-up-3", "boy-walk-up-4"],
+    "idle-down": ["boy-idle-down", "boy-idle-down-1", "boy-idle-down-2", "boy-idle-down-3", "boy-idle-down-4"],
+    "idle-left": ["boy-idle-left", "boy-idle-left-1", "boy-idle-left-2", "boy-idle-left-3", "boy-idle-left-4"],
+    "idle-right": ["boy-idle-right", "boy-idle-right-1", "boy-idle-right-2", "boy-idle-right-3", "boy-idle-right-4"],
+    "idle-up": ["boy-idle-up", "boy-idle-up-1", "boy-idle-up-2", "boy-idle-up-3", "boy-idle-up-4"],
+    "directional-walk": ["boy-walk-down", "boy-walk-left", "boy-walk-right", "boy-walk-up"],
+    "directional-idle": ["boy-idle-down", "boy-idle-left", "boy-idle-right", "boy-idle-up"]
+  }
+}

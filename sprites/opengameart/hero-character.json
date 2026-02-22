@@ -1,0 +1,160 @@
+{
+  "$schema": "../../schema/sprite-pack.schema.json",
+  "id": "hero-character",
+  "name": "Hero Character",
+  "source": "opengameart",
+  "license": "CC0",
+  "homepage": "https://opengameart.org/content/hero-character-sprite-sheet",
+  "downloadUrl": "https://opengameart.org/sites/default/files/player_full_animation.png",
+
+  "primarySheet": "player_full_animation.png",
+
+  "metadata": {
+    "author": "PixelHole",
+    "description": "Top-down RPG hero with 4-direction walk animations (40x64px). Medieval knight/warrior with flowing cape. Mirror left frames for right direction.",
+    "totalAssets": 42,
+    "gridSize": { "cols": 6, "rows": 7 },
+    "spriteSize": { "w": 40, "h": 64 }
+  },
+
+  "sprites": {
+    "hero-walk-down-1": { "x": 0, "y": 0, "w": 40, "h": 64 },
+    "hero-walk-down-2": { "x": 40, "y": 0, "w": 40, "h": 64 },
+    "hero-walk-down-3": { "x": 80, "y": 0, "w": 40, "h": 64 },
+    "hero-walk-down-4": { "x": 120, "y": 0, "w": 40, "h": 64 },
+    "hero-walk-down-5": { "x": 160, "y": 0, "w": 40, "h": 64 },
+    "hero-walk-down-6": { "x": 200, "y": 0, "w": 40, "h": 64 },
+
+    "hero-walk-down-cape-1": { "x": 0, "y": 64, "w": 40, "h": 64 },
+    "hero-walk-down-cape-2": { "x": 40, "y": 64, "w": 40, "h": 64 },
+    "hero-walk-down-cape-3": { "x": 80, "y": 64, "w": 40, "h": 64 },
+    "hero-walk-down-cape-4": { "x": 120, "y": 64, "w": 40, "h": 64 },
+    "hero-walk-down-cape-5": { "x": 160, "y": 64, "w": 40, "h": 64 },
+    "hero-walk-down-cape-6": { "x": 200, "y": 64, "w": 40, "h": 64 },
+
+    "hero-walk-left-1": { "x": 0, "y": 128, "w": 40, "h": 64 },
+    "hero-walk-left-2": { "x": 40, "y": 128, "w": 40, "h": 64 },
+    "hero-walk-left-3": { "x": 80, "y": 128, "w": 40, "h": 64 },
+    "hero-walk-left-4": { "x": 120, "y": 128, "w": 40, "h": 64 },
+    "hero-walk-left-5": { "x": 160, "y": 128, "w": 40, "h": 64 },
+    "hero-walk-left-6": { "x": 200, "y": 128, "w": 40, "h": 64 },
+
+    "hero-walk-left-cape-1": { "x": 0, "y": 192, "w": 40, "h": 64 },
+    "hero-walk-left-cape-2": { "x": 40, "y": 192, "w": 40, "h": 64 },
+    "hero-walk-left-cape-3": { "x": 80, "y": 192, "w": 40, "h": 64 },
+    "hero-walk-left-cape-4": { "x": 120, "y": 192, "w": 40, "h": 64 },
+    "hero-walk-left-cape-5": { "x": 160, "y": 192, "w": 40, "h": 64 },
+    "hero-walk-left-cape-6": { "x": 200, "y": 192, "w": 40, "h": 64 },
+
+    "hero-walk-up-1": { "x": 0, "y": 256, "w": 40, "h": 64 },
+    "hero-walk-up-2": { "x": 40, "y": 256, "w": 40, "h": 64 },
+    "hero-walk-up-3": { "x": 80, "y": 256, "w": 40, "h": 64 },
+    "hero-walk-up-4": { "x": 120, "y": 256, "w": 40, "h": 64 },
+    "hero-walk-up-5": { "x": 160, "y": 256, "w": 40, "h": 64 },
+    "hero-walk-up-6": { "x": 200, "y": 256, "w": 40, "h": 64 },
+
+    "hero-walk-up-cape-1": { "x": 0, "y": 320, "w": 40, "h": 64 },
+    "hero-walk-up-cape-2": { "x": 40, "y": 320, "w": 40, "h": 64 },
+    "hero-walk-up-cape-3": { "x": 80, "y": 320, "w": 40, "h": 64 },
+    "hero-walk-up-cape-4": { "x": 120, "y": 320, "w": 40, "h": 64 },
+    "hero-walk-up-cape-5": { "x": 160, "y": 320, "w": 40, "h": 64 },
+    "hero-walk-up-cape-6": { "x": 200, "y": 320, "w": 40, "h": 64 },
+
+    "hero-idle-down-1": { "x": 0, "y": 384, "w": 40, "h": 64 },
+    "hero-idle-down-2": { "x": 40, "y": 384, "w": 40, "h": 64 },
+    "hero-idle-left-1": { "x": 80, "y": 384, "w": 40, "h": 64 },
+    "hero-idle-left-2": { "x": 120, "y": 384, "w": 40, "h": 64 },
+    "hero-idle-up-1": { "x": 160, "y": 384, "w": 40, "h": 64 },
+    "hero-idle-up-2": { "x": 200, "y": 384, "w": 40, "h": 64 },
+
+    "hero-walk-down": {
+      "frames": [
+        { "x": 0, "y": 0, "w": 40, "h": 64 },
+        { "x": 40, "y": 0, "w": 40, "h": 64 },
+        { "x": 80, "y": 0, "w": 40, "h": 64 },
+        { "x": 120, "y": 0, "w": 40, "h": 64 },
+        { "x": 160, "y": 0, "w": 40, "h": 64 },
+        { "x": 200, "y": 0, "w": 40, "h": 64 }
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "hero-walk-left": {
+      "frames": [
+        { "x": 0, "y": 128, "w": 40, "h": 64 },
+        { "x": 40, "y": 128, "w": 40, "h": 64 },
+        { "x": 80, "y": 128, "w": 40, "h": 64 },
+        { "x": 120, "y": 128, "w": 40, "h": 64 },
+        { "x": 160, "y": 128, "w": 40, "h": 64 },
+        { "x": 200, "y": 128, "w": 40, "h": 64 }
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "hero-walk-up": {
+      "frames": [
+        { "x": 0, "y": 256, "w": 40, "h": 64 },
+        { "x": 40, "y": 256, "w": 40, "h": 64 },
+        { "x": 80, "y": 256, "w": 40, "h": 64 },
+        { "x": 120, "y": 256, "w": 40, "h": 64 },
+        { "x": 160, "y": 256, "w": 40, "h": 64 },
+        { "x": 200, "y": 256, "w": 40, "h": 64 }
+      ],
+      "fps": 8,
+      "loop": true
+    },
+    "hero-idle-down": {
+      "frames": [
+        { "x": 0, "y": 384, "w": 40, "h": 64 },
+        { "x": 40, "y": 384, "w": 40, "h": 64 }
+      ],
+      "fps": 2,
+      "loop": true
+    },
+    "hero-idle-left": {
+      "frames": [
+        { "x": 80, "y": 384, "w": 40, "h": 64 },
+        { "x": 120, "y": 384, "w": 40, "h": 64 }
+      ],
+      "fps": 2,
+      "loop": true
+    },
+    "hero-idle-up": {
+      "frames": [
+        { "x": 160, "y": 384, "w": 40, "h": 64 },
+        { "x": 200, "y": 384, "w": 40, "h": 64 }
+      ],
+      "fps": 2,
+      "loop": true
+    }
+  },
+
+  "tags": {
+    "player": [
+      "hero-walk-down", "hero-walk-left", "hero-walk-up",
+      "hero-idle-down", "hero-idle-left", "hero-idle-up"
+    ],
+    "walk-down": [
+      "hero-walk-down", "hero-walk-down-1", "hero-walk-down-2", "hero-walk-down-3",
+      "hero-walk-down-4", "hero-walk-down-5", "hero-walk-down-6"
+    ],
+    "walk-left": [
+      "hero-walk-left", "hero-walk-left-1", "hero-walk-left-2", "hero-walk-left-3",
+      "hero-walk-left-4", "hero-walk-left-5", "hero-walk-left-6"
+    ],
+    "walk-up": [
+      "hero-walk-up", "hero-walk-up-1", "hero-walk-up-2", "hero-walk-up-3",
+      "hero-walk-up-4", "hero-walk-up-5", "hero-walk-up-6"
+    ],
+    "idle": ["hero-idle-down", "hero-idle-left", "hero-idle-up"],
+    "directional-walk": ["hero-walk-down", "hero-walk-left", "hero-walk-up"],
+    "cape-variant": [
+      "hero-walk-down-cape-1", "hero-walk-down-cape-2", "hero-walk-down-cape-3",
+      "hero-walk-down-cape-4", "hero-walk-down-cape-5", "hero-walk-down-cape-6",
+      "hero-walk-left-cape-1", "hero-walk-left-cape-2", "hero-walk-left-cape-3",
+      "hero-walk-left-cape-4", "hero-walk-left-cape-5", "hero-walk-left-cape-6",
+      "hero-walk-up-cape-1", "hero-walk-up-cape-2", "hero-walk-up-cape-3",
+      "hero-walk-up-cape-4", "hero-walk-up-cape-5", "hero-walk-up-cape-6"
+    ]
+  }
+}
