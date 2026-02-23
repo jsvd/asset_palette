@@ -28,20 +28,32 @@ npm run catalog <pack-id>    # Open a specific pack directly
 
 ## Output Format
 
-When user makes a selection, this JSON is returned:
+When user clicks "Copy & Close", JSON is output to stdout:
 
 ```json
 {
-  "pack": "tiny-dungeon",
+  "packId": "tiny-dungeon",
   "packName": "Tiny Dungeon",
   "source": "kenney",
-  "downloadUrl": "https://kenney.nl/...",
+  "sheetPath": "Tilemap/tilemap.png",
+  "sheetWidth": 192,
+  "sheetHeight": 176,
   "tileSize": 16,
-  "selected": [
-    { "name": "hero-knight", "x": 16, "y": 96, "w": 16, "h": 16 }
-  ]
+  "spacing": 0,
+  "gridOffset": { "x": 0, "y": 0 },
+  "sprites": {
+    "hero-knight": { "x": 16, "y": 96, "w": 16, "h": 16 },
+    "skeleton": { "x": 32, "y": 96, "w": 16, "h": 16 }
+  },
+  "cachePath": "/absolute/path/to/.cache/tiny-dungeon"
 }
 ```
+
+**Key fields for code generation:**
+- `sheetPath`: Relative path to sprite sheet within pack
+- `sheetWidth/sheetHeight`: Image dimensions (for UV normalization)
+- `sprites`: Object mapping names to coordinates (ready for atlas definition)
+- `cachePath`: Absolute path to downloaded pack (copy to your project's assets/)
 
 ## Project Structure
 
@@ -77,8 +89,14 @@ The pack will automatically appear in the UI and download on first click.
 
 ## For Agents
 
-When the user needs a sprite:
-1. Run `/sprite-catalog` to open the visual selector
-2. Wait for the user to browse and select sprites
-3. Receive the JSON with pack info and coordinates
-4. Use the coordinates to extract sprites from the downloaded pack in `.cache/<pack-id>/`
+When the user needs sprites:
+1. Run `npm run catalog` (or `npm run catalog <pack-id>`) to open the visual selector
+2. Tell user: "Select sprites in browser, name them, click Copy & Close when done"
+3. Capture JSON from stdout
+4. Copy pack from `cachePath` to project's `assets/<packId>/`
+5. Generate `loadAtlasFromDef()` code using the JSON fields:
+   - `packId` → `id`
+   - `sheetPath` → `primarySheet`
+   - `sheetWidth/sheetHeight` → same
+   - `sprites` → copy verbatim
+   - `basePath: "assets/<packId>/"`

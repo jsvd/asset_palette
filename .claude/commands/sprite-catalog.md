@@ -35,18 +35,21 @@ Opens a visual UI for browsing and selecting sprites from CC0 game asset packs.
 3. The server outputs JSON to stdout:
    ```json
    {
-     "pack": "tiny-dungeon",
+     "packId": "tiny-dungeon",
      "packName": "Tiny Dungeon",
      "source": "kenney",
-     "downloadUrl": "https://...",
+     "sheetPath": "Tilemap/tilemap.png",
+     "sheetWidth": 192,
+     "sheetHeight": 176,
      "tileSize": 16,
-     "selected": [
-       { "name": "hero-knight", "x": 16, "y": 96, "w": 16, "h": 16 }
-     ]
+     "sprites": {
+       "hero-knight": { "x": 16, "y": 96, "w": 16, "h": 16 }
+     },
+     "cachePath": "/path/to/.cache/tiny-dungeon"
    }
    ```
 
-4. Use this JSON to locate sprite files in `.cache/<pack-id>/` and extract the specified regions.
+4. Copy pack from `cachePath` to project assets and generate atlas code.
 
 ## Available Packs
 

@@ -468,8 +468,16 @@ function getBrowseAllHtml(): string {
 </html>`;
 }
 
+function getRelativeSheetPath(pack: PackWithImage): string {
+  if (!pack.imagePath) return '';
+  const cacheDir = path.join(CACHE_DIR, pack.id);
+  return path.relative(cacheDir, pack.imagePath);
+}
+
 function getPackDetailHtml(pack: PackWithImage): string {
   const imageData = pack.imagePath ? getImageData(pack.imagePath) : '';
+  const sheetPath = getRelativeSheetPath(pack);
+  const cachePath = path.resolve(CACHE_DIR, pack.id);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -709,7 +717,9 @@ function getPackDetailHtml(pack: PackWithImage): string {
       downloadUrl: pack.downloadUrl,
       tileSize: pack.tileSize || 16,
       spacing: pack.spacing || 0,
-      gridOffset: pack.gridOffset || { x: 0, y: 0 }
+      gridOffset: pack.gridOffset || { x: 0, y: 0 },
+      sheetPath: sheetPath,
+      cachePath: cachePath
     })};
     const imageData = "${imageData}";
 
@@ -928,15 +938,24 @@ function getPackDetailHtml(pack: PackWithImage): string {
     });
 
     async function copyAndClose() {
+      // Convert selections array to sprites object
+      const sprites = {};
+      for (const sel of selections) {
+        sprites[sel.name] = { x: sel.x, y: sel.y, w: sel.w, h: sel.h };
+      }
+
       const result = {
-        pack: packMeta.id,
+        packId: packMeta.id,
         packName: packMeta.name,
         source: packMeta.source,
-        downloadUrl: packMeta.downloadUrl,
+        sheetPath: packMeta.sheetPath,
+        sheetWidth: img.width,
+        sheetHeight: img.height,
         tileSize: tileSize,
         spacing: spacing,
         gridOffset: { x: offsetX, y: offsetY },
-        selected: selections
+        sprites: sprites,
+        cachePath: packMeta.cachePath
       };
 
       const json = JSON.stringify(result, null, 2);
