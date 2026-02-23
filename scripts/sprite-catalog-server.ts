@@ -36,6 +36,7 @@ interface Catalog {
 
 interface PackWithImage extends CatalogPack {
   imagePath?: string;
+  imagePaths?: string[];
   thumbnailData?: string;
   downloaded: boolean;
 }
@@ -48,54 +49,76 @@ function loadCatalog(): Catalog {
   return JSON.parse(content);
 }
 
-function findPackImage(packId: string): string | null {
+function findPackImages(packId: string): string[] {
   const cacheDir = path.join(CACHE_DIR, packId);
-  if (!fs.existsSync(cacheDir)) return null;
+  if (!fs.existsSync(cacheDir)) return [];
 
-  // Common image locations in Kenney packs
-  const possiblePaths = [
-    'Preview.png',
-    'preview.png',
-    'Sample.png',
-    'sample.png',
-    'Tilemap/tilemap_packed.png',
+  const images: string[] = [];
+  const seen = new Set<string>();
+
+  // Preferred paths in priority order
+  const preferredPaths = [
     'Tilemap/tilemap.png',
+    'Tilemap/tilemap_packed.png',
     'Spritesheet/sheet.png',
+    'Spritesheet/spritesheet.png',
     'Tilesheet/tilesheet.png',
+    'Tilesheet/tilesheet_packed.png',
     'Tilesheet/monochrome_packed.png',
+    'Spritesheets/sheet.png',
+    'Spritesheets/spritesheet.png',
   ];
 
-  for (const p of possiblePaths) {
+  // Add preferred paths first (in order)
+  for (const p of preferredPaths) {
     const fullPath = path.join(cacheDir, p);
     if (fs.existsSync(fullPath)) {
-      return fullPath;
+      images.push(fullPath);
+      seen.add(fullPath);
     }
   }
 
-  // Find any PNG
+  // Find all other PNGs recursively
   try {
-    const findPng = (dir: string, depth = 0): string | null => {
-      if (depth > 2) return null;
+    const findAllPngs = (dir: string, depth = 0): void => {
+      if (depth > 3) return;
       const files = fs.readdirSync(dir);
 
-      // First check for PNGs in this directory
-      const png = files.find(f => f.endsWith('.png') && !f.startsWith('.'));
-      if (png) return path.join(dir, png);
-
-      // Then check subdirectories
       for (const f of files) {
-        const subPath = path.join(dir, f);
-        if (fs.statSync(subPath).isDirectory() && !f.startsWith('.')) {
-          const found = findPng(subPath, depth + 1);
-          if (found) return found;
+        const fullPath = path.join(dir, f);
+        if (f.endsWith('.png') && !f.startsWith('.') && !seen.has(fullPath)) {
+          // Skip preview/sample images - put them at the end
+          const lowerName = f.toLowerCase();
+          if (lowerName === 'preview.png' || lowerName === 'sample.png') {
+            continue; // Will add these last
+          }
+          images.push(fullPath);
+          seen.add(fullPath);
+        } else if (fs.statSync(fullPath).isDirectory() && !f.startsWith('.')) {
+          findAllPngs(fullPath, depth + 1);
         }
       }
-      return null;
     };
-    return findPng(cacheDir);
+    findAllPngs(cacheDir);
+
+    // Add preview/sample images last
+    for (const name of ['Preview.png', 'preview.png', 'Sample.png', 'sample.png']) {
+      const fullPath = path.join(cacheDir, name);
+      if (fs.existsSync(fullPath) && !seen.has(fullPath)) {
+        images.push(fullPath);
+        seen.add(fullPath);
+      }
+    }
   } catch {
-    return null;
+    // Ignore errors
   }
+
+  return images;
+}
+
+function findPackImage(packId: string): string | null {
+  const images = findPackImages(packId);
+  return images.length > 0 ? images[0] : null;
 }
 
 function getImageData(imagePath: string): string {
@@ -109,11 +132,12 @@ function getImageData(imagePath: string): string {
 
 function enrichPacks(): PackWithImage[] {
   return catalog.packs.map(pack => {
-    const imagePath = findPackImage(pack.id);
+    const imagePaths = findPackImages(pack.id);
     return {
       ...pack,
-      imagePath: imagePath || undefined,
-      downloaded: !!imagePath
+      imagePath: imagePaths[0] || undefined,
+      imagePaths: imagePaths.length > 0 ? imagePaths : undefined,
+      downloaded: imagePaths.length > 0
     };
   });
 }
@@ -468,16 +492,19 @@ function getBrowseAllHtml(): string {
 </html>`;
 }
 
-function getRelativeSheetPath(pack: PackWithImage): string {
-  if (!pack.imagePath) return '';
+function getRelativeSheetPaths(pack: PackWithImage): string[] {
+  if (!pack.imagePaths) return [];
   const cacheDir = path.join(CACHE_DIR, pack.id);
-  return path.relative(cacheDir, pack.imagePath);
+  return pack.imagePaths.map(p => path.relative(cacheDir, p));
 }
 
 function getPackDetailHtml(pack: PackWithImage): string {
-  const imageData = pack.imagePath ? getImageData(pack.imagePath) : '';
-  const sheetPath = getRelativeSheetPath(pack);
   const cachePath = path.resolve(CACHE_DIR, pack.id);
+  const sheetPaths = getRelativeSheetPaths(pack);
+  const sheets = (pack.imagePaths || []).map((imgPath, i) => ({
+    path: sheetPaths[i],
+    data: getImageData(imgPath)
+  }));
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -487,11 +514,14 @@ function getPackDetailHtml(pack: PackWithImage): string {
   <title>Asset Palette - ${pack.name}</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: #1a1a2e;
       color: #eee;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
@@ -526,6 +556,14 @@ function getPackDetailHtml(pack: PackWithImage): string {
       color: #fff;
       border-radius: 4px;
     }
+    .controls select {
+      padding: 4px 8px;
+      background: #0f3460;
+      border: 1px solid #1a1a2e;
+      color: #fff;
+      border-radius: 4px;
+      max-width: 200px;
+    }
     .controls button {
       padding: 8px 16px;
       border: none;
@@ -539,7 +577,7 @@ function getPackDetailHtml(pack: PackWithImage): string {
     .btn-secondary { background: #0f3460; color: #eee; }
     .btn-secondary:hover { background: #1a3a6e; }
 
-    main { flex: 1; display: flex; overflow: hidden; }
+    main { flex: 1; display: flex; overflow: hidden; min-height: 0; }
 
     .canvas-container {
       flex: 1;
@@ -558,10 +596,13 @@ function getPackDetailHtml(pack: PackWithImage): string {
 
     .sidebar {
       width: 320px;
+      min-width: 320px;
       background: #16213e;
       border-left: 1px solid #0f3460;
       display: flex;
       flex-direction: column;
+      height: 100%;
+      overflow: hidden;
     }
 
     .sidebar-header {
@@ -610,6 +651,30 @@ function getPackDetailHtml(pack: PackWithImage): string {
       line-height: 1;
     }
     .selection-item .remove:hover { color: #ff6b6b; }
+
+    .sprite-preview {
+      padding: 12px 16px;
+      border-top: 1px solid #0f3460;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .sprite-preview canvas {
+      image-rendering: pixelated;
+      border: 2px solid #0f3460;
+      background: #0f3460;
+      max-width: 100%;
+    }
+    .sprite-preview .preview-label {
+      font-size: 12px;
+      color: #888;
+      text-align: center;
+      word-break: break-all;
+    }
+    .sprite-preview.empty {
+      display: none;
+    }
 
     .sidebar-footer {
       padding: 12px 16px;
@@ -675,6 +740,10 @@ function getPackDetailHtml(pack: PackWithImage): string {
       <h1>${pack.name}</h1>
     </div>
     <div class="controls">
+      <label>Sheet:</label>
+      <select id="sheet-select" onchange="loadSheet(parseInt(this.value))">
+        ${sheets.map((s, i) => `<option value="${i}">${s.path}</option>`).join('')}
+      </select>
       <label>Size:</label>
       <input type="number" id="tile-size" value="${pack.tileSize || 16}" min="1" max="256" title="Tile size in pixels">
       <label>Gap:</label>
@@ -684,7 +753,7 @@ function getPackDetailHtml(pack: PackWithImage): string {
       <input type="number" id="offset-y" value="${pack.gridOffset?.y || 0}" min="0" max="256" title="Grid Y offset">
       <div class="zoom-controls">
         <button class="btn-secondary" onclick="zoomOut()">−</button>
-        <span class="zoom-level" id="zoom-level">2x</span>
+        <span class="zoom-level" id="zoom-level">1x</span>
         <button class="btn-secondary" onclick="zoomIn()">+</button>
       </div>
     </div>
@@ -700,6 +769,10 @@ function getPackDetailHtml(pack: PackWithImage): string {
     <div class="sidebar">
       <div class="sidebar-header">Selected Sprites (<span id="selection-count">0</span>)</div>
       <div class="selection-list" id="selection-list"></div>
+      <div class="sprite-preview empty" id="sprite-preview">
+        <canvas id="preview-canvas" width="128" height="128"></canvas>
+        <div class="preview-label" id="preview-label"></div>
+      </div>
       <div class="sidebar-footer">
         <button class="btn-secondary" onclick="clearSelection()">Clear</button>
         <button class="btn-primary" onclick="copyAndClose()">Copy & Close</button>
@@ -718,16 +791,16 @@ function getPackDetailHtml(pack: PackWithImage): string {
       tileSize: pack.tileSize || 16,
       spacing: pack.spacing || 0,
       gridOffset: pack.gridOffset || { x: 0, y: 0 },
-      sheetPath: sheetPath,
       cachePath: cachePath
     })};
-    const imageData = "${imageData}";
+    const sheets = ${JSON.stringify(sheets)};
 
+    let currentSheetIndex = 0;
     let tileSize = packMeta.tileSize || 16;
     let spacing = packMeta.spacing || 0;
     let offsetX = packMeta.gridOffset?.x || 0;
     let offsetY = packMeta.gridOffset?.y || 0;
-    let zoom = 2;
+    let zoom = 1;
     let selections = [];
     let img = null;
 
@@ -735,9 +808,22 @@ function getPackDetailHtml(pack: PackWithImage): string {
     const ctx = canvas.getContext('2d');
     const wrapper = document.getElementById('canvas-wrapper');
 
-    img = new Image();
-    img.onload = () => render();
-    img.src = imageData;
+    function loadSheet(index) {
+      currentSheetIndex = index;
+      img = new Image();
+      img.onload = () => {
+        // Auto-calculate zoom to fit viewport nicely on first load
+        const viewportWidth = container.clientWidth - 40;
+        const viewportHeight = container.clientHeight - 40;
+        const fitZoom = Math.min(viewportWidth / img.width, viewportHeight / img.height);
+        zoom = Math.max(1, Math.min(8, Math.floor(fitZoom)));
+        document.getElementById('zoom-level').textContent = zoom + 'x';
+        render();
+      };
+      img.src = sheets[index].data;
+    }
+
+    loadSheet(0);
 
     function render() {
       if (!img.complete) return;
@@ -748,7 +834,7 @@ function getPackDetailHtml(pack: PackWithImage): string {
       ctx.imageSmoothingEnabled = false;
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
       ctx.lineWidth = 1;
 
       const scaledTile = tileSize * zoom;
@@ -797,8 +883,8 @@ function getPackDetailHtml(pack: PackWithImage): string {
       for (const sel of selections) {
         const div = document.createElement('div');
         div.className = 'selected-cell';
-        div.style.left = (sel.x * zoom) + 'px';
-        div.style.top = (sel.y * zoom) + 'px';
+        div.style.left = (sel.x * zoom + 2) + 'px';
+        div.style.top = (sel.y * zoom + 2) + 'px';
         div.style.width = (sel.w * zoom) + 'px';
         div.style.height = (sel.h * zoom) + 'px';
         wrapper.appendChild(div);
@@ -810,10 +896,69 @@ function getPackDetailHtml(pack: PackWithImage): string {
     hoverDiv.style.display = 'none';
     wrapper.appendChild(hoverDiv);
 
+    // Drag state
+    let isDragging = false;
+    let isGridDrag = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragMoved = false;
+    let panStartScrollX = 0;
+    let panStartScrollY = 0;
+    let gridDragStartOffsetX = 0;
+    let gridDragStartOffsetY = 0;
+    const container = document.querySelector('.canvas-container');
+
+    canvas.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      dragMoved = false;
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+
+      if (e.shiftKey) {
+        // Shift+drag moves the grid offset
+        isGridDrag = true;
+        gridDragStartOffsetX = offsetX;
+        gridDragStartOffsetY = offsetY;
+        canvas.style.cursor = 'move';
+      } else {
+        // Normal drag pans the view
+        isGridDrag = false;
+        panStartScrollX = container.scrollLeft;
+        panStartScrollY = container.scrollTop;
+        canvas.style.cursor = 'grabbing';
+      }
+
+      hoverDiv.style.display = 'none';
+    });
+
     canvas.addEventListener('mousemove', (e) => {
+      if (isDragging) {
+        const dx = e.clientX - dragStartX;
+        const dy = e.clientY - dragStartY;
+
+        if (Math.abs(dx) > 3 || Math.abs(dy) > 3) {
+          dragMoved = true;
+        }
+
+        if (isGridDrag) {
+          // Move grid offset (in image coordinates, not zoomed)
+          offsetX = Math.max(0, gridDragStartOffsetX + Math.round(dx / zoom));
+          offsetY = Math.max(0, gridDragStartOffsetY + Math.round(dy / zoom));
+          document.getElementById('offset-x').value = offsetX;
+          document.getElementById('offset-y').value = offsetY;
+          render();
+        } else {
+          // Pan the scroll container
+          container.scrollLeft = panStartScrollX - dx;
+          container.scrollTop = panStartScrollY - dy;
+        }
+        return;
+      }
+
+      // Hover highlight (subtract 2px canvas border)
       const rect = canvas.getBoundingClientRect();
-      const rawX = e.clientX - rect.left;
-      const rawY = e.clientY - rect.top;
+      const rawX = e.clientX - rect.left - 2;
+      const rawY = e.clientY - rect.top - 2;
       const stride = tileSize + spacing;
       const cellX = Math.floor((rawX / zoom - offsetX) / stride);
       const cellY = Math.floor((rawY / zoom - offsetY) / stride);
@@ -821,20 +966,37 @@ function getPackDetailHtml(pack: PackWithImage): string {
       const y = offsetY + cellY * stride;
 
       hoverDiv.style.display = 'block';
-      hoverDiv.style.left = (x * zoom) + 'px';
-      hoverDiv.style.top = (y * zoom) + 'px';
+      hoverDiv.style.left = (x * zoom + 2) + 'px';
+      hoverDiv.style.top = (y * zoom + 2) + 'px';
       hoverDiv.style.width = (tileSize * zoom) + 'px';
       hoverDiv.style.height = (tileSize * zoom) + 'px';
+
+      canvas.style.cursor = e.shiftKey ? 'move' : 'crosshair';
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      isDragging = false;
+      isGridDrag = false;
+      canvas.style.cursor = 'crosshair';
     });
 
     canvas.addEventListener('mouseleave', () => {
+      isDragging = false;
+      isGridDrag = false;
+      canvas.style.cursor = 'crosshair';
       hoverDiv.style.display = 'none';
     });
 
     canvas.addEventListener('click', (e) => {
+      // Don't select if we just finished dragging
+      if (dragMoved) {
+        dragMoved = false;
+        return;
+      }
+
       const rect = canvas.getBoundingClientRect();
-      const rawX = e.clientX - rect.left;
-      const rawY = e.clientY - rect.top;
+      const rawX = e.clientX - rect.left - 2;
+      const rawY = e.clientY - rect.top - 2;
       const stride = tileSize + spacing;
       const cellX = Math.floor((rawX / zoom - offsetX) / stride);
       const cellY = Math.floor((rawY / zoom - offsetY) / stride);
@@ -877,6 +1039,7 @@ function getPackDetailHtml(pack: PackWithImage): string {
         input.placeholder = 'sprite-name';
         input.addEventListener('input', (e) => {
           selections[i].name = e.target.value;
+          updatePreview(i);
         });
 
         const remove = document.createElement('button');
@@ -893,6 +1056,36 @@ function getPackDetailHtml(pack: PackWithImage): string {
         item.appendChild(remove);
         list.appendChild(item);
       }
+
+      // Update big preview with last selection
+      updatePreview(selections.length - 1);
+    }
+
+    function updatePreview(index) {
+      const previewContainer = document.getElementById('sprite-preview');
+      const previewCanvas = document.getElementById('preview-canvas');
+      const previewLabel = document.getElementById('preview-label');
+      const pCtx = previewCanvas.getContext('2d');
+
+      if (index < 0 || index >= selections.length) {
+        previewContainer.classList.add('empty');
+        return;
+      }
+
+      previewContainer.classList.remove('empty');
+      const sel = selections[index];
+
+      // Scale to fit in 128px while maintaining aspect ratio
+      const scale = Math.min(128 / sel.w, 128 / sel.h);
+      const drawW = sel.w * scale;
+      const drawH = sel.h * scale;
+
+      previewCanvas.width = drawW;
+      previewCanvas.height = drawH;
+      pCtx.imageSmoothingEnabled = false;
+      pCtx.drawImage(img, sel.x, sel.y, sel.w, sel.h, 0, 0, drawW, drawH);
+
+      previewLabel.textContent = sel.name || 'unnamed';
     }
 
     function clearSelection() {
@@ -903,18 +1096,28 @@ function getPackDetailHtml(pack: PackWithImage): string {
 
     function zoomIn() {
       if (zoom < 8) {
-        zoom++;
-        document.getElementById('zoom-level').textContent = zoom + 'x';
-        render();
+        zoomTo(zoom + 1);
       }
     }
 
     function zoomOut() {
       if (zoom > 1) {
-        zoom--;
-        document.getElementById('zoom-level').textContent = zoom + 'x';
-        render();
+        zoomTo(zoom - 1);
       }
+    }
+
+    function zoomTo(newZoom) {
+      // Get center point in image coordinates before zoom
+      const centerX = (container.scrollLeft + container.clientWidth / 2) / zoom;
+      const centerY = (container.scrollTop + container.clientHeight / 2) / zoom;
+
+      zoom = newZoom;
+      document.getElementById('zoom-level').textContent = zoom + 'x';
+      render();
+
+      // Restore center point after zoom
+      container.scrollLeft = centerX * zoom - container.clientWidth / 2;
+      container.scrollTop = centerY * zoom - container.clientHeight / 2;
     }
 
     document.getElementById('tile-size').addEventListener('change', (e) => {
@@ -948,7 +1151,7 @@ function getPackDetailHtml(pack: PackWithImage): string {
         packId: packMeta.id,
         packName: packMeta.name,
         source: packMeta.source,
-        sheetPath: packMeta.sheetPath,
+        sheetPath: sheets[currentSheetIndex].path,
         sheetWidth: img.width,
         sheetHeight: img.height,
         tileSize: tileSize,
